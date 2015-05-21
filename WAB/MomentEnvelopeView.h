@@ -17,6 +17,16 @@
 
 @property(assign) NSInteger theNum;
 
+@property float tow; //Take-off Weight
+@property float tom; //Take-off Moment
+@property float lgw; //Landing Gross Weight
+@property float lwm; //Landing Weight Moment
+@property float zfw; //Zero Fuel Weight
+@property float zfm; //Zero Fuel Moment
+@property float bew; //Basic Empty Weight
+@property float bem; //Basic Empty Moment
+
+#define mMomentScale 1000
 #define mGraphHeight 450
 #define mGraphWidth 700
 #define mGraphBottom 455
@@ -39,9 +49,9 @@
 #define mYGridMajor 100
 #define mYGridMinor 20
 #define mTopSpace 10
-#define mBottomSpace 10
+#define mBottomSpace 30
 #define mRightSpace 10
-#define mLeftSpace 10
+#define mLeftSpace 50
 
 
 @end

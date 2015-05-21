@@ -26,6 +26,7 @@
 #define bag2Arm 123.0
 
 @property NSInteger test;
+@property NSString* testString;
 
 @property (weak, nonatomic) IBOutlet UITextField *eWeightField;
 - (IBAction)fuelGalField:(UITextField *)sender;
@@ -71,6 +72,7 @@
 @property float taxiFuelGal, taxiFuelWeight, taxiFuelMoment;
 @property float totalMoment, totalWeight, totalARM;
 @property (readwrite, nonatomic) int var;
+
 - (IBAction)doneButton:(UIButton *)sender;
 
 @end

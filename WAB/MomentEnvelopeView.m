@@ -10,15 +10,18 @@
 
 @implementation MomentEnvelopeView
 
-@synthesize theNum;
+@synthesize theNum, tow, tom, lgw, lwm, zfw, zfm, bew, bem;
 
 float utilityEnvelope[] = {52.25, 1500.0, 68.0, 1950.0, 70.92855, 2000.0, 81.1, 2000.0, 60.75, 1500.0};
 float normalEnvelope[] = {52.25, 1500.0, 68.0, 1950.0, 88.5, 2300.0, 109.0, 2300.0, 70.5, 1500.0};
 
 - (void) drawEnvelopeWithContext:(CGContextRef)ctx
 {
-    //float fuelWeight = super.data.fuelWeight;
-    NSLog(@"thenum is %ld", theNum);
+    NSLog(@"I'm in MomentEnvelopeView");
+    NSLog(@"Take-off Weight is %f", tow);
+    NSLog(@"Take-off Moment is %f", tom);
+    NSLog(@"Zero Fuel Weight is %f", zfw);
+    NSLog(@"Zero Fuel Moment is %f", zfm);
     
     CGFloat screenX = self.frame.size.width;
     CGFloat screenY = self.frame.size.height;
@@ -33,7 +36,7 @@ float normalEnvelope[] = {52.25, 1500.0, 68.0, 1950.0, 88.5, 2300.0, 109.0, 2300
     
     //Draw Utility Category Envelope
     CGContextSetLineWidth(ctx, 1.5);
-    CGContextSetStrokeColorWithColor(ctx, [[UIColor colorWithRed:0 green:1 blue:0 alpha:1] CGColor]);
+    CGContextSetStrokeColorWithColor(ctx, [[UIColor blueColor] CGColor]);
     CGContextBeginPath(ctx);
     CGContextMoveToPoint(ctx, ((utilityEnvelope[0] - mXAxisMin)/graphXScale) * graphWidth + mLeftSpace, mBottomSpace+((utilityEnvelope[1]-mYAxisMin)/graphYScale)*graphHeight);
     for (int i = 2 ; i < sizeof(utilityEnvelope)/4 ; i+=2 )
@@ -45,7 +48,7 @@ float normalEnvelope[] = {52.25, 1500.0, 68.0, 1950.0, 88.5, 2300.0, 109.0, 2300
     CGContextDrawPath(ctx, kCGPathStroke);
 
     //Draw Normal Category Envelope
-    CGContextSetStrokeColorWithColor(ctx, [[UIColor colorWithRed:0 green:0 blue:1 alpha:1] CGColor]);
+    CGContextSetStrokeColorWithColor(ctx, [[UIColor greenColor] CGColor]);
     CGContextBeginPath(ctx);
     CGContextMoveToPoint(ctx, ((normalEnvelope[0] - mXAxisMin)/graphXScale) * graphWidth + mLeftSpace, mBottomSpace+((normalEnvelope[1]-mYAxisMin)/graphYScale)*graphHeight);
     for (int i = 2 ; i < sizeof(normalEnvelope)/4 ; i+=2 )
@@ -55,12 +58,26 @@ float normalEnvelope[] = {52.25, 1500.0, 68.0, 1950.0, 88.5, 2300.0, 109.0, 2300
     CGContextAddLineToPoint(ctx, ((normalEnvelope[0] - mXAxisMin)/graphXScale) * graphWidth + mLeftSpace, mBottomSpace+((normalEnvelope[1]-mYAxisMin)/graphYScale)*graphHeight);    CGContextClosePath(ctx);
     CGContextDrawPath(ctx, kCGPathStroke);
     
-    //float fuelWeight = data.fuelWeight;
-    //float fuelMoment = data.fuelMoment;
-    //NSLog (@"fuelWeight is %f and fuelMoment is %f", fuelWeight, fuelMoment);
-    //CGContextSetStrokeColorWithColor(ctx, [[UIColor colorWithRed:0 green:0 blue:1 alpha:1] CGColor]);
-    //CGContextBeginPath(ctx);
-    //CGContextMoveToPoint(ctx, ((normalEnvelope[0] - mXAxisMin)/graphXScale) * graphWidth + mLeftSpace, mBottomSpace+((normalEnvelope[1]-mYAxisMin)/graphYScale)*graphHeight);
+    //Draw Weight Line
+    CGContextSetStrokeColorWithColor(ctx, [[UIColor whiteColor] CGColor]);
+    CGContextBeginPath(ctx);
+    CGContextMoveToPoint(ctx, ((tom/mMomentScale - mXAxisMin)/graphXScale) * graphWidth + mLeftSpace, mBottomSpace+((tow-mYAxisMin)/graphYScale)*graphHeight);
+    CGContextAddLineToPoint(ctx, ((zfm/mMomentScale - mXAxisMin)/graphXScale) * graphWidth + mLeftSpace, mBottomSpace+((zfw-mYAxisMin)/graphYScale)*graphHeight);
+    CGContextAddLineToPoint(ctx, ((bem/mMomentScale - mXAxisMin)/graphXScale) * graphWidth + mLeftSpace, mBottomSpace+((bew-mYAxisMin)/graphYScale)*graphHeight);
+    CGContextDrawPath(ctx, kCGPathStroke);
+    
+    //Draw Dots
+    /*
+    CGContextSetFillColorWithColor(ctx, [[UIColor colorWithRed:1.0 green:0.5 blue:0 alpha:1] CGColor]);
+    for (int i = 0; i < 2 ; i++)
+    {
+        float x = kOffsetX + i * kStepX;
+        float y = mGraphHeight - GraphHeight * data[i];
+        CGRect rect = CGRectMake(x - kCircleRadius, y - kCircleRadius, 2 * kCircleRadius, 2 * kCircleRadius);
+        CGContextAddEllipseInRect(ctx, rect);
+    }
+    CGContextDrawPath(ctx, kCGPathFillStroke);
+    */
 }
 
 - (void) drawString: (NSString*) s

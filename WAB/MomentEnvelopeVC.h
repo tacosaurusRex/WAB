@@ -13,14 +13,19 @@
 
 @interface MomentEnvelopeVC : UIViewController {
     WeightsVC *data;
+    //MomentEnvelopeView *graphView;
 }
 
 
 @property (nonatomic, retain) WeightsVC *data;
+//@property (nonatomic, weak) MomentEnvelopeView *graphView;
 
 @property CGFloat selfHeight;
 
 @property CGFloat selfWidth;
+
+- (void) setData:(NSString **)buffer range:(NSRange)inRange;
+
 
 @end
 

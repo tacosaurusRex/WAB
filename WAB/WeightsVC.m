@@ -15,7 +15,6 @@
 
 @implementation WeightsVC
 
-
 - (void) viewDidLoad {
     _eWeightField.text = [NSString stringWithFormat:@"%.1f", emptyWeight];
     _eWeightArmField.text = [NSString stringWithFormat:@"%.1f", emptyWeightArm];
@@ -26,53 +25,53 @@
     [self defaultTaxiFuel];
     [super viewDidLoad];
     [self keypadSetup];
-    
-    //_test = 99;
-    //data.fuelWeight = 99;
-    //[self pushViewController:data animated:YES];
-    //[self presentViewController:data animated:YES completion:NULL];
-    
 }
 
 - (void) viewWillDisappear:(BOOL)animated {
+    NSLog(@"I'm in viewWillDisappear");
     NSLog(@"Fuel weight in WeightsVC is %f", _fuelWeight);
+    MomentEnvelopeVC *moment = [self.storyboard instantiateViewControllerWithIdentifier:@"Envelope"];
+    moment.data = self;
+    [self presentViewController:moment animated:YES completion:nil];
     
+}
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    /*
+    NSString *testString = @"This is a test";
+    
+    if ([segue.destinationViewController respondsToSelector:@selector(setdata:)]) {
+        [segue.destinationViewController performSelector:@selector(setdata:)
+                                              withObject:testString];
+    }*/
 }
 
 - (void) keypadSetup {
-    
     DoneCancelNumberPadToolbar *fuelToolbar = [[DoneCancelNumberPadToolbar alloc] initWithTextField:_fuelGalField];
     fuelToolbar.delegate = self;
     _fuelGalField.inputAccessoryView = fuelToolbar;
-    
     DoneCancelNumberPadToolbar *frontSeatToolbar = [[DoneCancelNumberPadToolbar alloc] initWithTextField:_frontSeatsWeightField];
     frontSeatToolbar.delegate = self;
     _frontSeatsWeightField.inputAccessoryView = frontSeatToolbar;
-    
     DoneCancelNumberPadToolbar *rearSeatToolbar = [[DoneCancelNumberPadToolbar alloc] initWithTextField:_rearSeatsWeightField];
     rearSeatToolbar.delegate = self;
     _rearSeatsWeightField.inputAccessoryView = rearSeatToolbar;
-    
     DoneCancelNumberPadToolbar *bag1Toolbar = [[DoneCancelNumberPadToolbar alloc] initWithTextField:_bag1WeightField];
     bag1Toolbar.delegate = self;
     _bag1WeightField.inputAccessoryView = bag1Toolbar;
-    
     DoneCancelNumberPadToolbar *bag2Toolbar = [[DoneCancelNumberPadToolbar alloc] initWithTextField:_bag2WeightField];
     bag2Toolbar.delegate = self;
     _bag2WeightField.inputAccessoryView = bag2Toolbar;
-    
     DoneCancelNumberPadToolbar *taxiFuelToolbar = [[DoneCancelNumberPadToolbar alloc] initWithTextField:_taxiFuelGalField];
     taxiFuelToolbar.delegate = self;
     _taxiFuelGalField.inputAccessoryView = taxiFuelToolbar;
-    
 }
--(void)doneCancelNumberPadToolbarDelegate:(DoneCancelNumberPadToolbar *)controller didClickDone:(UITextField *)textField
-{
+
+-(void)doneCancelNumberPadToolbarDelegate:(DoneCancelNumberPadToolbar *)controller didClickDone:(UITextField *)textField {
     NSLog(@"%@", textField.text);
 }
 
--(void)doneCancelNumberPadToolbarDelegate:(DoneCancelNumberPadToolbar *)controller didClickCancel:(UITextField *)textField
-{
+-(void)doneCancelNumberPadToolbarDelegate:(DoneCancelNumberPadToolbar *)controller didClickCancel:(UITextField *)textField {
     NSLog(@"Canceled: %@", [textField description]);
 }
 
@@ -181,8 +180,8 @@
     [self summation];
 }
 
-- (void) summation {
-
+- (void) summation
+{
     _totalMoment = emptyWeightMoment + _fuelMoment + _frontSeatMoment + _rearSeatMoment + _bag1Moment + _bag2Moment - _taxiFuelMoment;
     _totalWeight = emptyWeight + _fuelWeight + _frontSeatWeight + _rearSeatWeight + _bag1Weight + _bag2Weight - _taxiFuelWeight;
     _totalARM = _totalMoment/_totalWeight;
@@ -191,7 +190,8 @@
     _totalArmField.text = [NSString stringWithFormat:@"%.1f", _totalARM];
 }
 
-- (void) defaultTaxiFuel{
+- (void) defaultTaxiFuel
+{
     if (!_taxiFuelGal) {
         _taxiFuelGal = defaultTaxiFuelGallons;
         _taxiFuelGalField.text = [NSString stringWithFormat:@"%.1f", _taxiFuelGal];
@@ -204,12 +204,11 @@
 }
 
 
-- (IBAction)doneButton:(UIButton *)sender {
+- (IBAction)doneButton:(UIButton *)sender
+{
     /*MomentEnvelopeVC *moment = [[MomentEnvelopeVC alloc] initWithNibName:@"MomentEnvelopeVC" bundle:nil];
     [self presentViewController:moment animated:NO completion:nil];*/
-    MomentEnvelopeVC *moment = [self.storyboard instantiateViewControllerWithIdentifier:@"Envelope"];
-    moment.data = self;
-    [self presentViewController:moment animated:YES completion:nil];
+
     
     
 }
