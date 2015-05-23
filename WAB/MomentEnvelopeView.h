@@ -10,12 +10,17 @@
 #import "MomentEnvelopeVC.h"
 #import "WeightsVC.h"
 #import <CoreText/CoreText.h>
+#import "UserInput.h"
 
-@interface MomentEnvelopeView : UIView {
-    NSInteger theNum;
-}
+@interface MomentEnvelopeView : UIView
 
-@property(assign) NSInteger theNum;
+@property float fuelGal, fuelWeight, fuelMoment;
+@property float frontSeatWeight, frontSeatMoment;
+@property float rearSeatWeight, rearSeatMoment;
+@property float bag1Weight, bag1Moment;
+@property float bag2Weight, bag2Moment;
+@property float taxiFuelGal, taxiFuelWeight, taxiFuelMoment;
+@property float totalMoment, totalWeight, totalARM;
 
 @property float tow; //Take-off Weight
 @property float tom; //Take-off Moment

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "DoneCancelNumberPadToolbar.h"
+#import "UserInput.h"
 
 @class MomentEnvelopeVC;
 @class  MomentEnvelopeView;
@@ -71,7 +72,6 @@
 @property float bag2Weight, bag2Moment;
 @property float taxiFuelGal, taxiFuelWeight, taxiFuelMoment;
 @property float totalMoment, totalWeight, totalARM;
-@property (readwrite, nonatomic) int var;
 
 - (IBAction)doneButton:(UIButton *)sender;
 

@@ -10,19 +10,23 @@
 
 @implementation MomentEnvelopeView
 
-@synthesize theNum, tow, tom, lgw, lwm, zfw, zfm, bew, bem;
+@synthesize tow, tom, lgw, lwm, zfw, zfm, bew, bem, fuelWeight, fuelGal, fuelMoment, frontSeatWeight, frontSeatMoment, rearSeatWeight, rearSeatMoment, bag1Weight, bag1Moment, bag2Weight, bag2Moment, taxiFuelGal, taxiFuelWeight, taxiFuelMoment;
 
 float utilityEnvelope[] = {52.25, 1500.0, 68.0, 1950.0, 70.92855, 2000.0, 81.1, 2000.0, 60.75, 1500.0};
 float normalEnvelope[] = {52.25, 1500.0, 68.0, 1950.0, 88.5, 2300.0, 109.0, 2300.0, 70.5, 1500.0};
 
 - (void) drawEnvelopeWithContext:(CGContextRef)ctx
 {
-    NSLog(@"I'm in MomentEnvelopeView");
-    NSLog(@"Take-off Weight is %f", tow);
-    NSLog(@"Take-off Moment is %f", tom);
-    NSLog(@"Zero Fuel Weight is %f", zfw);
-    NSLog(@"Zero Fuel Moment is %f", zfm);
+    [self getData];
     
+    NSLog(@"I'm in MomentEnvelopeView");
+    NSLog(@"Take-off Weight is %.1f", tow);
+    NSLog(@"Take-off Moment is %.1f", tom);
+    NSLog(@"Zero Fuel Weight is %.1f", zfw);
+    NSLog(@"Zero Fuel Moment is %.1f", zfm);
+    NSLog(@"Basic Empty Weight is %.1f", bew);
+    NSLog(@"Basic Empty Moment is %.1f", bem);
+    NSLog(@"Fuel Weight is %f", fuelWeight);
     CGFloat screenX = self.frame.size.width;
     CGFloat screenY = self.frame.size.height;
     float graphXScale = mXAxisMax-mXAxisMin;
@@ -144,5 +148,29 @@ float normalEnvelope[] = {52.25, 1500.0, 68.0, 1950.0, 88.5, 2300.0, 109.0, 2300
     [self drawEnvelopeWithContext:context];
 }
 
+- (void)getData {
+    
+    UserInput *data = [UserInput sharedInput];
+    
+    fuelWeight = data.fuelWeight;
+    fuelMoment = data.fuelMoment;
+    frontSeatWeight = data.frontSeatWeight;
+    frontSeatMoment = data.frontSeatMoment;
+    rearSeatWeight = data.rearSeatWeight;
+    rearSeatMoment = data.rearSeatMoment;
+    bag1Weight = data.bag1Weight;
+    bag1Moment = data.bag1Moment;
+    bag2Weight = data.bag2Weight;
+    bag2Moment = data.bag2Moment;
+    taxiFuelWeight = data.taxiFuelWeight;
+    taxiFuelMoment = data.taxiFuelMoment;
+    
+    tow = data.totalWeight;
+    tom = data.totalMoment;
+    zfw = data.totalWeight - data.fuelWeight + data.taxiFuelWeight;
+    zfm = data.totalMoment - data.fuelMoment + data.taxiFuelMoment;
+    bew = emptyWeight;
+    bem = emptyWeightMoment;
+}
 
 @end

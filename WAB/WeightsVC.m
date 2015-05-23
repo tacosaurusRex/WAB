@@ -15,6 +15,8 @@
 
 @implementation WeightsVC
 
+
+
 - (void) viewDidLoad {
     _eWeightField.text = [NSString stringWithFormat:@"%.1f", emptyWeight];
     _eWeightArmField.text = [NSString stringWithFormat:@"%.1f", emptyWeightArm];
@@ -25,25 +27,13 @@
     [self defaultTaxiFuel];
     [super viewDidLoad];
     [self keypadSetup];
+
 }
+
 
 - (void) viewWillDisappear:(BOOL)animated {
     NSLog(@"I'm in viewWillDisappear");
-    NSLog(@"Fuel weight in WeightsVC is %f", _fuelWeight);
-    MomentEnvelopeVC *moment = [self.storyboard instantiateViewControllerWithIdentifier:@"Envelope"];
-    moment.data = self;
-    [self presentViewController:moment animated:YES completion:nil];
-    
-}
-
-- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    /*
-    NSString *testString = @"This is a test";
-    
-    if ([segue.destinationViewController respondsToSelector:@selector(setdata:)]) {
-        [segue.destinationViewController performSelector:@selector(setdata:)
-                                              withObject:testString];
-    }*/
+    [self shareData];
 }
 
 - (void) keypadSetup {
@@ -90,6 +80,7 @@
         _fuelGalField.text = [NSString stringWithFormat:@"%.1f", _fuelGal];
     }
     _fuelGal = [sender.text floatValue];
+
     _fuelWeight = _fuelGal * weightOfFuel;
     _fuelMoment = _fuelWeight * fuelArm;
     _fuelGalField.text = [NSString stringWithFormat:@"%.1f", _fuelGal];
@@ -212,4 +203,29 @@
     
     
 }
+
+- (void)shareData {
+    
+    UserInput *data = [UserInput sharedInput];
+    
+    data.fuelGal = _fuelGal;
+    data.fuelWeight = _fuelWeight;
+    data.fuelMoment = _fuelMoment;
+    data.frontSeatWeight = _frontSeatWeight;
+    data.frontSeatMoment = _frontSeatMoment;
+    data.rearSeatWeight = _rearSeatWeight;
+    data.rearSeatMoment = _rearSeatMoment;
+    data.bag1Weight = _bag1Weight;
+    data.bag1Moment = _bag1Moment;
+    data.bag2Weight = _bag2Weight;
+    data.bag2Moment = _bag2Moment;
+    data.taxiFuelGal = _taxiFuelGal;
+    data.taxiFuelWeight = _taxiFuelWeight;
+    data.taxiFuelMoment = _taxiFuelMoment;
+    data.totalMoment = _totalMoment;
+    data.totalWeight = _totalWeight;
+    data.totalARM = _totalARM;
+}
+
+
 @end
