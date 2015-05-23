@@ -8,10 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface UserInput : NSObject {
-    float fuelWeight;
-    NSString *someProperty;
-}
+@interface UserInput : NSObject
 
 +(id) sharedInput;
 
@@ -23,6 +20,7 @@
 @property float bag1Weight, bag1Moment;
 @property float bag2Weight, bag2Moment;
 @property float taxiFuelGal, taxiFuelWeight, taxiFuelMoment;
+@property float flightFuelGal, flightFuelWeight, flightFuelMoment;
 @property float totalMoment, totalWeight, totalARM;
 
 @end

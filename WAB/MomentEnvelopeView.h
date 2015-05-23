@@ -20,6 +20,7 @@
 @property float bag1Weight, bag1Moment;
 @property float bag2Weight, bag2Moment;
 @property float taxiFuelGal, taxiFuelWeight, taxiFuelMoment;
+@property float flightFuelGal, flightFuelWeight, flightFuelMoment;
 @property float totalMoment, totalWeight, totalARM;
 
 @property float tow; //Take-off Weight
@@ -30,6 +31,7 @@
 @property float zfm; //Zero Fuel Moment
 @property float bew; //Basic Empty Weight
 @property float bem; //Basic Empty Moment
+
 
 #define mMomentScale 1000
 #define mGraphHeight 450
@@ -58,5 +60,6 @@
 #define mRightSpace 10
 #define mLeftSpace 50
 
+#define mCircleRadius 1.5
 
 @end

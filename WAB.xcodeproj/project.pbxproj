@@ -17,6 +17,7 @@
 		C541DC321B0BDE01002D12BB /* DoneCancelNumberPadToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = C541DC311B0BDE01002D12BB /* DoneCancelNumberPadToolbar.m */; };
 		C58520C21B0C13B000E39A76 /* WeightsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C58520C11B0C13B000E39A76 /* WeightsVC.m */; };
 		C58520C51B0C71B800E39A76 /* MomentEnvelopeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C58520C41B0C71B800E39A76 /* MomentEnvelopeVC.m */; };
+		C58520CB1B0FC82500E39A76 /* UserInput.m in Sources */ = {isa = PBXBuildFile; fileRef = C58520CA1B0FC82500E39A76 /* UserInput.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,8 @@
 		C58520C11B0C13B000E39A76 /* WeightsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeightsVC.m; sourceTree = "<group>"; };
 		C58520C31B0C71B800E39A76 /* MomentEnvelopeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MomentEnvelopeVC.h; sourceTree = "<group>"; };
 		C58520C41B0C71B800E39A76 /* MomentEnvelopeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MomentEnvelopeVC.m; sourceTree = "<group>"; };
+		C58520C91B0FC82500E39A76 /* UserInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserInput.h; path = ../UserInput.h; sourceTree = "<group>"; };
+		C58520CA1B0FC82500E39A76 /* UserInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserInput.m; path = ../UserInput.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +97,8 @@
 				C541DC311B0BDE01002D12BB /* DoneCancelNumberPadToolbar.m */,
 				C541DC051B0652B4002D12BB /* AppDelegate.h */,
 				C541DC061B0652B4002D12BB /* AppDelegate.m */,
+				C58520C91B0FC82500E39A76 /* UserInput.h */,
+				C58520CA1B0FC82500E39A76 /* UserInput.m */,
 				C58520C01B0C13B000E39A76 /* WeightsVC.h */,
 				C58520C11B0C13B000E39A76 /* WeightsVC.m */,
 				C58520C31B0C71B800E39A76 /* MomentEnvelopeVC.h */,
@@ -240,6 +245,7 @@
 				C541DC071B0652B4002D12BB /* AppDelegate.m in Sources */,
 				C58520C21B0C13B000E39A76 /* WeightsVC.m in Sources */,
 				C541DC041B0652B4002D12BB /* main.m in Sources */,
+				C58520CB1B0FC82500E39A76 /* UserInput.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

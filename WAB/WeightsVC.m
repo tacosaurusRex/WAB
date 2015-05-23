@@ -16,7 +16,6 @@
 @implementation WeightsVC
 
 
-
 - (void) viewDidLoad {
     _eWeightField.text = [NSString stringWithFormat:@"%.1f", emptyWeight];
     _eWeightArmField.text = [NSString stringWithFormat:@"%.1f", emptyWeightArm];
@@ -27,7 +26,6 @@
     [self defaultTaxiFuel];
     [super viewDidLoad];
     [self keypadSetup];
-
 }
 
 
@@ -55,6 +53,9 @@
     DoneCancelNumberPadToolbar *taxiFuelToolbar = [[DoneCancelNumberPadToolbar alloc] initWithTextField:_taxiFuelGalField];
     taxiFuelToolbar.delegate = self;
     _taxiFuelGalField.inputAccessoryView = taxiFuelToolbar;
+    DoneCancelNumberPadToolbar *flightFuelToolbar = [[DoneCancelNumberPadToolbar alloc] initWithTextField:_flightFuelGalField];
+    taxiFuelToolbar.delegate = self;
+    _flightFuelGalField.inputAccessoryView = flightFuelToolbar;
 }
 
 -(void)doneCancelNumberPadToolbarDelegate:(DoneCancelNumberPadToolbar *)controller didClickDone:(UITextField *)textField {
@@ -68,7 +69,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
-
 
 - (IBAction)fuelGalField:(UITextField *)sender {
     if (!_fuelGal) {
@@ -104,6 +104,24 @@
     _taxiFuelGalField.text = [NSString stringWithFormat:@"%.1f", _taxiFuelGal];
     _taxiFuelWeightField.text = [NSString stringWithFormat:@"%.1f", _taxiFuelWeight];
     _taxiFuelMomentField.text = [NSString stringWithFormat:@"%.1f", _taxiFuelMoment];
+    [self summation];
+}
+
+- (IBAction)flightFuelGalField:(UITextField *)sender {
+    if (!_flightFuelGal) {
+        if ([sender.text  isEqual: @""] ){
+            _flightFuelGalField.text = [NSString stringWithFormat:@"0.0"];
+        }
+    }
+    if ([sender.text  isEqual: @""]) {
+        _flightFuelGalField.text = [NSString stringWithFormat:@"%.1f", _flightFuelGal];
+    }
+    _flightFuelGal = [sender.text floatValue];
+    _flightFuelWeight = _flightFuelGal * weightOfFuel;
+    _flightFuelMoment = _flightFuelWeight * fuelArm;
+    _flightFuelGalField.text = [NSString stringWithFormat:@"%.1f", _flightFuelGal];
+    _flightFuelWeightField.text = [NSString stringWithFormat:@"%.1f", _flightFuelWeight];
+    _flightFuelMomentField.text = [NSString stringWithFormat:@"%.1f", _flightFuelMoment];
     [self summation];
 }
 
@@ -208,7 +226,6 @@
     
     UserInput *data = [UserInput sharedInput];
     
-    data.fuelGal = _fuelGal;
     data.fuelWeight = _fuelWeight;
     data.fuelMoment = _fuelMoment;
     data.frontSeatWeight = _frontSeatWeight;
@@ -219,13 +236,13 @@
     data.bag1Moment = _bag1Moment;
     data.bag2Weight = _bag2Weight;
     data.bag2Moment = _bag2Moment;
-    data.taxiFuelGal = _taxiFuelGal;
     data.taxiFuelWeight = _taxiFuelWeight;
     data.taxiFuelMoment = _taxiFuelMoment;
     data.totalMoment = _totalMoment;
+    data.flightFuelWeight = _flightFuelWeight;
+    data.flightFuelMoment = _flightFuelMoment;
     data.totalWeight = _totalWeight;
     data.totalARM = _totalARM;
 }
-
 
 @end

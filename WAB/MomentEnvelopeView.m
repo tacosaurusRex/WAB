@@ -10,23 +10,17 @@
 
 @implementation MomentEnvelopeView
 
-@synthesize tow, tom, lgw, lwm, zfw, zfm, bew, bem, fuelWeight, fuelGal, fuelMoment, frontSeatWeight, frontSeatMoment, rearSeatWeight, rearSeatMoment, bag1Weight, bag1Moment, bag2Weight, bag2Moment, taxiFuelGal, taxiFuelWeight, taxiFuelMoment;
+@synthesize tow, tom, lgw, lwm, zfw, zfm, bew, bem, fuelWeight, fuelGal, fuelMoment, frontSeatWeight, frontSeatMoment, rearSeatWeight, rearSeatMoment, bag1Weight, bag1Moment, bag2Weight, bag2Moment, taxiFuelWeight, taxiFuelMoment, flightFuelWeight, flightFuelMoment;
 
 float utilityEnvelope[] = {52.25, 1500.0, 68.0, 1950.0, 70.92855, 2000.0, 81.1, 2000.0, 60.75, 1500.0};
 float normalEnvelope[] = {52.25, 1500.0, 68.0, 1950.0, 88.5, 2300.0, 109.0, 2300.0, 70.5, 1500.0};
 
+
 - (void) drawEnvelopeWithContext:(CGContextRef)ctx
 {
     [self getData];
+    float line[] = {tom, tow, lwm, lgw, zfm, zfw, bem, bew};
     
-    NSLog(@"I'm in MomentEnvelopeView");
-    NSLog(@"Take-off Weight is %.1f", tow);
-    NSLog(@"Take-off Moment is %.1f", tom);
-    NSLog(@"Zero Fuel Weight is %.1f", zfw);
-    NSLog(@"Zero Fuel Moment is %.1f", zfm);
-    NSLog(@"Basic Empty Weight is %.1f", bew);
-    NSLog(@"Basic Empty Moment is %.1f", bem);
-    NSLog(@"Fuel Weight is %f", fuelWeight);
     CGFloat screenX = self.frame.size.width;
     CGFloat screenY = self.frame.size.height;
     float graphXScale = mXAxisMax-mXAxisMin;
@@ -65,23 +59,25 @@ float normalEnvelope[] = {52.25, 1500.0, 68.0, 1950.0, 88.5, 2300.0, 109.0, 2300
     //Draw Weight Line
     CGContextSetStrokeColorWithColor(ctx, [[UIColor whiteColor] CGColor]);
     CGContextBeginPath(ctx);
-    CGContextMoveToPoint(ctx, ((tom/mMomentScale - mXAxisMin)/graphXScale) * graphWidth + mLeftSpace, mBottomSpace+((tow-mYAxisMin)/graphYScale)*graphHeight);
-    CGContextAddLineToPoint(ctx, ((zfm/mMomentScale - mXAxisMin)/graphXScale) * graphWidth + mLeftSpace, mBottomSpace+((zfw-mYAxisMin)/graphYScale)*graphHeight);
-    CGContextAddLineToPoint(ctx, ((bem/mMomentScale - mXAxisMin)/graphXScale) * graphWidth + mLeftSpace, mBottomSpace+((bew-mYAxisMin)/graphYScale)*graphHeight);
+    CGContextMoveToPoint(ctx, ((line[0]/mMomentScale - mXAxisMin)/graphXScale) * graphWidth + mLeftSpace, mBottomSpace+((line[1]-mYAxisMin)/graphYScale)*graphHeight);
+    for (int i = 2 ; i < sizeof(line)/4 ; i+=2 )
+    {
+        CGContextAddLineToPoint(ctx, ((line[i]/mMomentScale - mXAxisMin)/graphXScale) * graphWidth + mLeftSpace, mBottomSpace+((line[i+1]-mYAxisMin)/graphYScale)*graphHeight);
+    }
     CGContextDrawPath(ctx, kCGPathStroke);
     
     //Draw Dots
-    /*
-    CGContextSetFillColorWithColor(ctx, [[UIColor colorWithRed:1.0 green:0.5 blue:0 alpha:1] CGColor]);
-    for (int i = 0; i < 2 ; i++)
+    CGContextSetStrokeColorWithColor(ctx, [[UIColor redColor] CGColor]);
+    CGContextSetFillColorWithColor(ctx, [[UIColor redColor] CGColor]);
+    for (int i = 0; i <= sizeof(line)/4 ; i++)
     {
-        float x = kOffsetX + i * kStepX;
-        float y = mGraphHeight - GraphHeight * data[i];
-        CGRect rect = CGRectMake(x - kCircleRadius, y - kCircleRadius, 2 * kCircleRadius, 2 * kCircleRadius);
+        float x = ((line[i]/mMomentScale - mXAxisMin)/graphXScale) * graphWidth + mLeftSpace;
+        float y = (mBottomSpace+((line[i+1]-mYAxisMin)/graphYScale)* graphHeight);
+
+        CGRect rect = CGRectMake(x - mCircleRadius, y - mCircleRadius, 2 * mCircleRadius, 2 * mCircleRadius);
         CGContextAddEllipseInRect(ctx, rect);
     }
     CGContextDrawPath(ctx, kCGPathFillStroke);
-    */
 }
 
 - (void) drawString: (NSString*) s
@@ -105,7 +101,7 @@ float normalEnvelope[] = {52.25, 1500.0, 68.0, 1950.0, 88.5, 2300.0, 109.0, 2300
                                  contextRect.origin.y + floorf((contextRect.size.height - size.height) / 2),
                                  size.width,
                                  size.height);
-    
+
     [s drawInRect:textRect withAttributes:attributes];
 }
 
@@ -162,13 +158,17 @@ float normalEnvelope[] = {52.25, 1500.0, 68.0, 1950.0, 88.5, 2300.0, 109.0, 2300
     bag1Moment = data.bag1Moment;
     bag2Weight = data.bag2Weight;
     bag2Moment = data.bag2Moment;
+    flightFuelWeight = data.flightFuelWeight;
+    flightFuelMoment = data.flightFuelMoment;
     taxiFuelWeight = data.taxiFuelWeight;
     taxiFuelMoment = data.taxiFuelMoment;
     
     tow = data.totalWeight;
     tom = data.totalMoment;
-    zfw = data.totalWeight - data.fuelWeight + data.taxiFuelWeight;
-    zfm = data.totalMoment - data.fuelMoment + data.taxiFuelMoment;
+    lgw = tow - flightFuelWeight;
+    lwm = tom - flightFuelMoment;
+    zfw = tow - data.fuelWeight;
+    zfm = tom - data.fuelMoment;
     bew = emptyWeight;
     bem = emptyWeightMoment;
 }

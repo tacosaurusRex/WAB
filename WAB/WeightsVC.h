@@ -44,6 +44,9 @@
 - (IBAction)taxiFuelGalField:(UITextField *)sender;
 @property (weak, nonatomic) IBOutlet UITextField *taxiFuelGalField;
 @property (weak, nonatomic) IBOutlet UITextField *taxiFuelWeightField;
+- (IBAction)flightFuelGalField:(UITextField *)sender;
+@property (weak, nonatomic) IBOutlet UITextField *flightFuelGalField;
+@property (weak, nonatomic) IBOutlet UITextField *flightFuelWeightField;
 
 @property (weak, nonatomic) IBOutlet UITextField *eWeightArmField;
 @property (weak, nonatomic) IBOutlet UITextField *fuelArmField;
@@ -60,6 +63,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *bag1MomentField;
 @property (weak, nonatomic) IBOutlet UITextField *bag2MomentField;
 @property (weak, nonatomic) IBOutlet UITextField *taxiFuelMomentField;
+@property (weak, nonatomic) IBOutlet UITextField *flightFuelMomentField;
 
 @property (weak, nonatomic) IBOutlet UILabel *totalMomentLabel;
 @property (weak, nonatomic) IBOutlet UILabel *totalWeightLabel;
@@ -71,9 +75,8 @@
 @property float bag1Weight, bag1Moment;
 @property float bag2Weight, bag2Moment;
 @property float taxiFuelGal, taxiFuelWeight, taxiFuelMoment;
+@property float flightFuelGal, flightFuelWeight, flightFuelMoment;
 @property float totalMoment, totalWeight, totalARM;
-
-- (IBAction)doneButton:(UIButton *)sender;
 
 @end
 
