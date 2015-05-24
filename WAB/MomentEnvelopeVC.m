@@ -32,7 +32,7 @@
     _selfHeight = self.view.bounds.size.height;
     _selfWidth = self.view.bounds.size.width;
     MomentEnvelopeView *graphView = [[MomentEnvelopeView alloc] init];
-    graphView.frame = CGRectMake(0, 0, _selfWidth, _selfHeight-49);
+    graphView.frame = CGRectMake(0, 20, _selfWidth, _selfHeight-(49+20));
     [self.view addSubview: graphView];
 }
 

@@ -39,9 +39,6 @@
 #define mGraphBottom 455
 #define mGraphTop 10
 
-#define mXScaleFactor 10
-#define mXscaleStart 45
-
 #define mOffsetX 10
 #define mStepX 50
 #define mOffsetY 10
@@ -61,5 +58,5 @@
 #define mLeftSpace 50
 
 #define mCircleRadius 1.5
-
+#define axisLabelFontSize 8
 @end

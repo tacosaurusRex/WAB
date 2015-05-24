@@ -16,10 +16,55 @@ float utilityEnvelope[] = {52.25, 1500.0, 68.0, 1950.0, 70.92855, 2000.0, 81.1, 
 float normalEnvelope[] = {52.25, 1500.0, 68.0, 1950.0, 88.5, 2300.0, 109.0, 2300.0, 70.5, 1500.0};
 
 
+- (void)drawAxisLabels
+{
+    CGFloat screenX = self.frame.size.width;
+    CGFloat screenY = self.frame.size.height;
+    float graphWidth = screenX - mRightSpace - mLeftSpace;
+    float graphHeight = screenY - mTopSpace - mBottomSpace;
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    CGContextSaveGState(ctx);
+    
+    UIFont *axisLabelFont = [UIFont systemFontOfSize:10.0];
+    CGContextSetFillColorWithColor(ctx, [UIColor whiteColor].CGColor);
+    // Format the string
+    /// Make a copy of the default paragraph style
+    NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    /// Set line break mode
+    paragraphStyle.lineBreakMode = NSLineBreakByTruncatingTail;
+    /// Set text alignment
+    paragraphStyle.alignment = NSTextAlignmentCenter;
+    NSDictionary *attributes = @{ NSFontAttributeName: axisLabelFont,
+                                  NSForegroundColorAttributeName: [UIColor whiteColor],
+                                  NSParagraphStyleAttributeName: paragraphStyle };
+    // X-AXIS LABEL
+    // Create text
+    NSString *xAxisLabel = @"Loaded Aircraft Moment/1000 (Pound-Inches)";
+    CGSize xSize = [xAxisLabel sizeWithAttributes:attributes];
+    CGRect xRect = CGRectMake ((graphWidth/2+mLeftSpace)-(xSize.width/2), screenY-17, xSize.width, xSize.height);
+    [xAxisLabel drawInRect:xRect withAttributes:attributes];
+    
+    //Y-AXIS LABEL
+    // Rotate the context 90 degrees (convert to radians)
+    CGAffineTransform transform1 = CGAffineTransformMakeRotation(-90.0 * M_PI/180.0);
+    CGContextConcatCTM(ctx, transform1);
+    
+    // Create text
+    NSString *yAxisLabel = @"Loaded Aircraft Weight (Pounds)";
+    CGSize ySize = [yAxisLabel sizeWithAttributes:attributes];
+    CGRect yRect = CGRectMake (0, 0, ySize.width, ySize.height);
+    
+    // Move the context back into the view
+    CGContextTranslateCTM(ctx, -((graphHeight+20)/2+ySize.width/2), 7);
+    //Draw the string
+    [yAxisLabel drawInRect:yRect withAttributes:attributes];
+    
+    CGContextRestoreGState(ctx);
+}
+
 - (void) drawEnvelopeWithContext:(CGContextRef)ctx
 {
     [self getData];
-    float line[] = {tom, tow, lwm, lgw, zfm, zfw, bem, bew};
     
     CGFloat screenX = self.frame.size.width;
     CGFloat screenY = self.frame.size.height;
@@ -27,8 +72,29 @@ float normalEnvelope[] = {52.25, 1500.0, 68.0, 1950.0, 88.5, 2300.0, 109.0, 2300
     float graphYScale = mYAxisMax-mYAxisMin;
     float graphWidth = screenX - mRightSpace - mLeftSpace;
     float graphHeight = screenY - mTopSpace - mBottomSpace;
-
+    float line[] = {tom, tow, lwm, lgw, zfm, zfw, bem, bew};
+    
+    //Draw Text
+    UIFont *axisLabelFont = [UIFont fontWithName:@"Verdana" size:axisLabelFontSize];
+    
+    //Draw Y-Axis Labels
+    int yLabelCount = graphYScale / mYGridMajor;
+    for ( int i = 0 ; i <= yLabelCount ; i++ ) {
+        CGRect text = CGRectMake(mLeftSpace-5, ((i*(graphHeight/yLabelCount))+mTopSpace), 0, 0);
+        
+        [self drawRJString:[NSString stringWithFormat:@"%.0d",(mYAxisMax-i*mYGridMajor)] withFont:axisLabelFont inRect:text];
+    }
+    
+    //Draw X-Axis Labels
+    int xLabelCount = graphXScale / mXGridMajor;
+    for ( int i = 1 ; i < xLabelCount ; i++ ) {
+        CGRect text = CGRectMake( i*(graphWidth/xLabelCount)+mLeftSpace, screenY-(mBottomSpace-12), 0, 0);
+        [self drawCJString:[NSString stringWithFormat:@"%.0d",(mXAxisMin+i*mXGridMajor)] withFont:axisLabelFont inRect:text];
+        //       ^^^Is it really necessary to have separate drawString methods for left justified and center justified labels??
+    }
+    
     //Flip y coordinates
+    CGContextSaveGState(ctx);
     CGContextTranslateCTM(ctx, 0, self.bounds.size.height);
     CGContextScaleCTM(ctx, 1.0, -1.0);
     
@@ -78,9 +144,11 @@ float normalEnvelope[] = {52.25, 1500.0, 68.0, 1950.0, 88.5, 2300.0, 109.0, 2300
         CGContextAddEllipseInRect(ctx, rect);
     }
     CGContextDrawPath(ctx, kCGPathFillStroke);
+    
+    CGContextRestoreGState(ctx);
 }
 
-- (void) drawString: (NSString*) s
+- (void) drawRJString: (NSString*) s
            withFont: (UIFont*) font
              inRect: (CGRect) contextRect {
     
@@ -89,19 +157,42 @@ float normalEnvelope[] = {52.25, 1500.0, 68.0, 1950.0, 88.5, 2300.0, 109.0, 2300
     /// Set line break mode
     paragraphStyle.lineBreakMode = NSLineBreakByTruncatingTail;
     /// Set text alignment
-    paragraphStyle.alignment = NSTextAlignmentCenter;
-    
+    paragraphStyle.alignment = NSTextAlignmentRight;
     NSDictionary *attributes = @{ NSFontAttributeName: font,
                                   NSForegroundColorAttributeName: [UIColor whiteColor],
                                   NSParagraphStyleAttributeName: paragraphStyle };
     
     CGSize size = [s sizeWithAttributes:attributes];
     
-    CGRect textRect = CGRectMake(contextRect.origin.x + floorf((contextRect.size.width - size.width) / 2),
+    CGRect textRect = CGRectMake(contextRect.origin.x + floorf((contextRect.size.width - size.width) / 1),
                                  contextRect.origin.y + floorf((contextRect.size.height - size.height) / 2),
                                  size.width,
                                  size.height);
 
+    [s drawInRect:textRect withAttributes:attributes];
+}
+
+- (void) drawCJString: (NSString*) s
+             withFont: (UIFont*) font
+               inRect: (CGRect) contextRect {
+    
+    /// Make a copy of the default paragraph style
+    NSMutableParagraphStyle *paragraphXStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    /// Set line break mode
+    paragraphXStyle.lineBreakMode = NSLineBreakByTruncatingTail;
+    /// Set text alignment
+    paragraphXStyle.alignment = NSTextAlignmentCenter;
+    NSDictionary *attributes = @{ NSFontAttributeName: font,
+                                  NSForegroundColorAttributeName: [UIColor whiteColor],
+                                  NSParagraphStyleAttributeName: paragraphXStyle };
+    
+    CGSize size = [s sizeWithAttributes:attributes];
+    
+    CGRect textRect = CGRectMake(contextRect.origin.x + floorf((contextRect.size.width - size.width) / 2),
+                                 contextRect.origin.y + floorf((contextRect.size.height - size.height) / 1),
+                                 size.width,
+                                 size.height);
+    
     [s drawInRect:textRect withAttributes:attributes];
 }
 
@@ -142,6 +233,7 @@ float normalEnvelope[] = {52.25, 1500.0, 68.0, 1950.0, 88.5, 2300.0, 109.0, 2300
     CGContextSetLineDash(context, 0, NULL, 0); // Remove the dash
     
     [self drawEnvelopeWithContext:context];
+    [self drawAxisLabels];
 }
 
 - (void)getData {
