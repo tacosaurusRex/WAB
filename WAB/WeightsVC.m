@@ -196,7 +196,8 @@
     _totalARM = _totalMoment/_totalWeight;
     _totalMomentLabel.text = [NSString stringWithFormat:@"%.1f", _totalMoment];
     _totalWeightLabel.text = [NSString stringWithFormat:@"%.1f", _totalWeight];
-    _totalArmField.text = [NSString stringWithFormat:@"%.1f", _totalARM];
+    _totalArmField.text = [NSString stringWithFormat:@"%.1f In.", _totalARM];
+    [self maneuveringSpeed];
 }
 
 - (void) defaultTaxiFuel
@@ -220,6 +221,11 @@
 
     
     
+}
+
+- (void) maneuveringSpeed {
+    float va = mgva * sqrt(_totalWeight/maxGross);
+    _vaSpeedLabel.text = [NSString stringWithFormat:@"Va = %.1f KIAS", va];
 }
 
 - (void)shareData {

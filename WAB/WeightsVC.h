@@ -15,6 +15,8 @@
 
 @interface WeightsVC : UIViewController <DoneCancelNumberPadToolbarDelegate>
 
+#define mgva 97.0
+#define maxGross 2300.0
 #define emptyWeight 1564.0
 #define emptyWeightArm 40.9
 #define emptyWeightMoment 62366.72
@@ -68,6 +70,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *totalMomentLabel;
 @property (weak, nonatomic) IBOutlet UILabel *totalWeightLabel;
 @property (weak, nonatomic) IBOutlet UITextField *totalArmField;
+@property (weak, nonatomic) IBOutlet UILabel *vaSpeedLabel;
 
 @property float fuelGal, fuelWeight, fuelMoment;
 @property float frontSeatWeight, frontSeatMoment;
