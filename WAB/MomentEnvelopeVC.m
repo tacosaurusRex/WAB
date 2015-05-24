@@ -18,11 +18,7 @@
 @synthesize data;
 
 - (void)viewDidLoad {
-    NSLog(@"I'm in MomentEnvelopeVC viewDidLoad");
     [super viewDidLoad];
-    
-    NSLog(@"fuel weight in MomentEnvelopeVC is %f", data.fuelWeight);
-
     // Do any additional setup after loading the view, typically from a nib.
 }
 

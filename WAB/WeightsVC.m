@@ -36,7 +36,7 @@
 
 
 - (void) viewWillDisappear:(BOOL)animated {
-    NSLog(@"I'm in viewWillDisappear");
+    //NSLog(@"I'm in viewWillDisappear");
     [self shareData];
 }
 

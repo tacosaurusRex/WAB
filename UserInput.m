@@ -28,7 +28,7 @@ static UserInput *sharedUserInput = nil;
 
 - (id)init {
     
-    NSLog(@"fuelWeight in UserInput init is %f", fuelWeight);
+    //NSLog(@"fuelWeight in UserInput init is %f", fuelWeight);
     if (self = [super init]) {
         fuelWeight = 0;
         someProperty = @"Default property value";
