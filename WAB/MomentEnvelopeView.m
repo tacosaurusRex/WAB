@@ -25,7 +25,7 @@ float normalEnvelope[] = {52.25, 1500.0, 68.0, 1950.0, 88.5, 2300.0, 109.0, 2300
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     CGContextSaveGState(ctx);
     
-    UIFont *axisLabelFont = [UIFont systemFontOfSize:10.0];
+    UIFont *axisLabelFont = [UIFont fontWithName:@"Verdana" size:axisLabelFontSize];
     CGContextSetFillColorWithColor(ctx, [UIColor whiteColor].CGColor);
     // Format the string
     /// Make a copy of the default paragraph style
@@ -41,7 +41,7 @@ float normalEnvelope[] = {52.25, 1500.0, 68.0, 1950.0, 88.5, 2300.0, 109.0, 2300
     // Create text
     NSString *xAxisLabel = @"Loaded Aircraft Moment/1000 (Pound-Inches)";
     CGSize xSize = [xAxisLabel sizeWithAttributes:attributes];
-    CGRect xRect = CGRectMake ((graphWidth/2+mLeftSpace)-(xSize.width/2), screenY-17, xSize.width, xSize.height);
+    CGRect xRect = CGRectMake ((graphWidth/2+mLeftSpace)-(xSize.width/2), screenY-16, xSize.width, xSize.height);
     [xAxisLabel drawInRect:xRect withAttributes:attributes];
     
     //Y-AXIS LABEL
@@ -144,8 +144,18 @@ float normalEnvelope[] = {52.25, 1500.0, 68.0, 1950.0, 88.5, 2300.0, 109.0, 2300
         CGContextAddEllipseInRect(ctx, rect);
     }
     CGContextDrawPath(ctx, kCGPathFillStroke);
-    
     CGContextRestoreGState(ctx);
+    
+    CGContextSetStrokeColorWithColor(ctx, [[UIColor redColor] CGColor]);
+    NSArray *point = [NSArray arrayWithObjects: @"TOW", @"LGW", @"ZFW", @"BEW", nil];
+    for (int i = 0; i < 4 ; i++)
+    {
+        float x = ((line[0+(i*2)]/mMomentScale - mXAxisMin)/graphXScale) * graphWidth + mLeftSpace;
+        float y = (mTopSpace + (graphHeight - ((line[1+(i*2)]-mYAxisMin)/graphYScale) * graphHeight));
+        CGRect text = CGRectMake( x+15, y+7, 0, 0);
+        [self drawCJString:[NSString stringWithString:point[i]] withFont:axisLabelFont inRect:text];
+    }
+    
 }
 
 - (void) drawRJString: (NSString*) s
