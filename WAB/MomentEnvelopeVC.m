@@ -20,6 +20,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
+    [self setNeedsStatusBarAppearanceUpdate]; //white status bar text
+    
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -35,6 +38,11 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle //method for white status bar text
+{
+    return UIStatusBarStyleLightContent;
 }
 
 @end
