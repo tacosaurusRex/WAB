@@ -248,7 +248,7 @@ float normalEnvelope[] = {52.25, 1500.0, 68.0, 1950.0, 88.5, 2300.0, 109.0, 2300
 
 - (void)getData {
     
-    UserInput *data = [UserInput sharedInput];
+    Singleton *data = [Singleton sharedInput];
     
     fuelWeight = data.fuelWeight;
     fuelMoment = data.fuelMoment;

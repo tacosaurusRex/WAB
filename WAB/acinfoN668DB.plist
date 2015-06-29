@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>acType</key>
+	<string>1975 Cessna 210 L</string>
+	<key>acID</key>
+	<string>N668DB</string>
+	<key>maxGross</key>
+	<real>3800</real>
+	<key>eWeight</key>
+	<integer>2399</integer>
+	<key>eMoment</key>
+	<real>98131.31</real>
+	<key>eArm</key>
+	<real>41.29</real>
+	<key>fuelCap</key>
+	<integer>90</integer>
+	<key>fuelArm</key>
+	<integer>43</integer>
+	<key>defaultFuel</key>
+	<integer>60</integer>
+	<key>defaultTaxiFuel</key>
+	<integer>2</integer>
+	<key>defaultFlightFuel</key>
+	<integer>15</integer>
+	<key>station1Arm</key>
+	<integer>37</integer>
+	<key>station1Default</key>
+	<integer>0</integer>
+	<key>station1Label</key>
+	<string>Front Seats</string>
+	<key>station2Arm</key>
+	<integer>71</integer>
+	<key>station2Default</key>
+	<integer>0</integer>
+	<key>station2Label</key>
+	<string>Middle Seats</string>
+	<key>station3Arm</key>
+	<integer>101</integer>
+	<key>station3Default</key>
+	<integer>0</integer>
+	<key>station3Label</key>
+	<string>Aft Seats</string>
+	<key>station4Arm</key>
+	<integer>138</integer>
+	<key>station4Default</key>
+	<integer>25</integer>
+	<key>station4Label</key>
+	<string>Baggage</string>
+	<key>balanceArray</key>
+	<array/>
+	<key>momentEnvelopeArray1</key>
+	<array/>
+	<key>momentEnvelopeArray2</key>
+	<array/>
+</dict>
+</plist>

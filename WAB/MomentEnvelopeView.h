@@ -10,7 +10,7 @@
 #import "MomentEnvelopeVC.h"
 #import "WeightsVC.h"
 #import <CoreText/CoreText.h>
-#import "UserInput.h"
+#import "Singleton.h"
 
 @interface MomentEnvelopeView : UIView
 

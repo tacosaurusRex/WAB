@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "DoneCancelNumberPadToolbar.h"
-#import "UserInput.h"
+#import "Singleton.h"
 
 @class MomentEnvelopeVC;
 @class  MomentEnvelopeView;
@@ -23,8 +23,8 @@
 #define defaultFuelGallons 40
 #define defaultTaxiFuelGallons 1
 #define defaultFlightFuelGallons 5
-#define defaultbag1Weight 20
-#define defaultbag2Weight 10
+#define defaultbag1Weight 25
+#define defaultbag2Weight 5
 #define weightOfFuel 6.02
 #define fuelArm 46.0
 #define frontSeatArm 37.0

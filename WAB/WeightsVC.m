@@ -286,7 +286,7 @@
 
 - (void)shareData {
     
-    UserInput *data = [UserInput sharedInput];
+    Singleton *data = [Singleton sharedInput];
     
     data.fuelWeight = _fuelWeight;
     data.fuelMoment = _fuelMoment;

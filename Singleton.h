@@ -1,5 +1,5 @@
 //
-//  UserInput.h
+//  Singleton.h
 //  WAB
 //
 //  Created by Robert Mahoney on 5/22/15.
@@ -8,11 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-@interface UserInput : NSObject
+@interface Singleton : NSObject
 
 +(id) sharedInput;
 
 @property (nonatomic, retain) NSString *someProperty;
+
+@property float emptyWeight, emptyMoment;
 
 @property float fuelGal, fuelWeight, fuelMoment;
 @property float frontSeatWeight, frontSeatMoment;

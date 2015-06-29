@@ -1,19 +1,19 @@
 //
-//  UserInput.m
+//  Singleton.m
 //  WAB
 //
 //  Created by Robert Mahoney on 5/22/15.
 //  Copyright (c) 2015 Robert Mahoney. All rights reserved.
 //
 
-#import "UserInput.h"
+#import "Singleton.h"
 
-@implementation UserInput
+@implementation Singleton
 
 @synthesize fuelWeight;
 @synthesize someProperty;
 
-static UserInput *sharedUserInput = nil;
+static Singleton *sharedData = nil;
 
 #pragma mark Singleton Methods
 
@@ -21,14 +21,14 @@ static UserInput *sharedUserInput = nil;
     
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedUserInput = [[self alloc] init];
+        sharedData = [[self alloc] init];
     });
-    return sharedUserInput;
+    return sharedData;
 }
 
 - (id)init {
     
-    //NSLog(@"fuelWeight in UserInput init is %f", fuelWeight);
+    //NSLog(@"fuelWeight in SharedData init is %f", fuelWeight);
     if (self = [super init]) {
         fuelWeight = 0;
         someProperty = @"Default property value";

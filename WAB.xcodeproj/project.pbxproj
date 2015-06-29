@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C507AFC41B1FCE1A00F2086F /* AircraftMenuTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C507AFC31B1FCE1A00F2086F /* AircraftMenuTableViewController.m */; };
+		C507AFC61B2029D700F2086F /* acinfoN668DB.plist in Resources */ = {isa = PBXBuildFile; fileRef = C507AFC51B2029D700F2086F /* acinfoN668DB.plist */; };
 		C541DC041B0652B4002D12BB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C541DC031B0652B4002D12BB /* main.m */; };
 		C541DC071B0652B4002D12BB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C541DC061B0652B4002D12BB /* AppDelegate.m */; };
 		C541DC101B0652B4002D12BB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C541DC0E1B0652B4002D12BB /* Main.storyboard */; };
@@ -17,7 +19,7 @@
 		C541DC321B0BDE01002D12BB /* DoneCancelNumberPadToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = C541DC311B0BDE01002D12BB /* DoneCancelNumberPadToolbar.m */; };
 		C58520C21B0C13B000E39A76 /* WeightsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C58520C11B0C13B000E39A76 /* WeightsVC.m */; };
 		C58520C51B0C71B800E39A76 /* MomentEnvelopeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C58520C41B0C71B800E39A76 /* MomentEnvelopeVC.m */; };
-		C58520CB1B0FC82500E39A76 /* UserInput.m in Sources */ = {isa = PBXBuildFile; fileRef = C58520CA1B0FC82500E39A76 /* UserInput.m */; };
+		C58520CB1B0FC82500E39A76 /* Singleton.m in Sources */ = {isa = PBXBuildFile; fileRef = C58520CA1B0FC82500E39A76 /* Singleton.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,6 +33,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C507AFC21B1FCE1A00F2086F /* AircraftMenuTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AircraftMenuTableViewController.h; sourceTree = "<group>"; };
+		C507AFC31B1FCE1A00F2086F /* AircraftMenuTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AircraftMenuTableViewController.m; sourceTree = "<group>"; };
+		C507AFC51B2029D700F2086F /* acinfoN668DB.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = acinfoN668DB.plist; sourceTree = "<group>"; };
 		C541DBFE1B0652B4002D12BB /* WAB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WAB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C541DC021B0652B4002D12BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C541DC031B0652B4002D12BB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -50,8 +55,8 @@
 		C58520C11B0C13B000E39A76 /* WeightsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeightsVC.m; sourceTree = "<group>"; };
 		C58520C31B0C71B800E39A76 /* MomentEnvelopeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MomentEnvelopeVC.h; sourceTree = "<group>"; };
 		C58520C41B0C71B800E39A76 /* MomentEnvelopeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MomentEnvelopeVC.m; sourceTree = "<group>"; };
-		C58520C91B0FC82500E39A76 /* UserInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserInput.h; path = ../UserInput.h; sourceTree = "<group>"; };
-		C58520CA1B0FC82500E39A76 /* UserInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserInput.m; path = ../UserInput.m; sourceTree = "<group>"; };
+		C58520C91B0FC82500E39A76 /* Singleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Singleton.h; path = ../Singleton.h; sourceTree = "<group>"; };
+		C58520CA1B0FC82500E39A76 /* Singleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Singleton.m; path = ../Singleton.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,8 +102,8 @@
 				C541DC311B0BDE01002D12BB /* DoneCancelNumberPadToolbar.m */,
 				C541DC051B0652B4002D12BB /* AppDelegate.h */,
 				C541DC061B0652B4002D12BB /* AppDelegate.m */,
-				C58520C91B0FC82500E39A76 /* UserInput.h */,
-				C58520CA1B0FC82500E39A76 /* UserInput.m */,
+				C58520C91B0FC82500E39A76 /* Singleton.h */,
+				C58520CA1B0FC82500E39A76 /* Singleton.m */,
 				C58520C01B0C13B000E39A76 /* WeightsVC.h */,
 				C58520C11B0C13B000E39A76 /* WeightsVC.m */,
 				C58520C31B0C71B800E39A76 /* MomentEnvelopeVC.h */,
@@ -106,6 +111,8 @@
 				C541DC2A1B0661E5002D12BB /* MomentEnvelopeView.h */,
 				C541DC2B1B0661E5002D12BB /* MomentEnvelopeView.m */,
 				C541DC0E1B0652B4002D12BB /* Main.storyboard */,
+				C507AFC21B1FCE1A00F2086F /* AircraftMenuTableViewController.h */,
+				C507AFC31B1FCE1A00F2086F /* AircraftMenuTableViewController.m */,
 				C541DC111B0652B4002D12BB /* Images.xcassets */,
 				C541DC131B0652B4002D12BB /* LaunchScreen.xib */,
 				C541DC011B0652B4002D12BB /* Supporting Files */,
@@ -116,6 +123,7 @@
 		C541DC011B0652B4002D12BB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C507AFC51B2029D700F2086F /* acinfoN668DB.plist */,
 				C541DC021B0652B4002D12BB /* Info.plist */,
 				C541DC031B0652B4002D12BB /* main.m */,
 			);
@@ -219,6 +227,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C507AFC61B2029D700F2086F /* acinfoN668DB.plist in Resources */,
 				C541DC101B0652B4002D12BB /* Main.storyboard in Resources */,
 				C541DC151B0652B4002D12BB /* LaunchScreen.xib in Resources */,
 				C541DC121B0652B4002D12BB /* Images.xcassets in Resources */,
@@ -243,9 +252,10 @@
 				C541DC2C1B0661E5002D12BB /* MomentEnvelopeView.m in Sources */,
 				C541DC321B0BDE01002D12BB /* DoneCancelNumberPadToolbar.m in Sources */,
 				C541DC071B0652B4002D12BB /* AppDelegate.m in Sources */,
+				C507AFC41B1FCE1A00F2086F /* AircraftMenuTableViewController.m in Sources */,
 				C58520C21B0C13B000E39A76 /* WeightsVC.m in Sources */,
 				C541DC041B0652B4002D12BB /* main.m in Sources */,
-				C58520CB1B0FC82500E39A76 /* UserInput.m in Sources */,
+				C58520CB1B0FC82500E39A76 /* Singleton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

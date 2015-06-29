@@ -10,12 +10,12 @@
 #import "WeightsVC.h"
 
 @interface MomentEnvelopeVC ()
+@property CGFloat selfHeight;
+@property CGFloat selfWidth;
 
 @end
 
 @implementation MomentEnvelopeVC
-
-@synthesize data;
 
 - (void)viewDidLoad {
     [super viewDidLoad];

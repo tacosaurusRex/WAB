@@ -11,15 +11,7 @@
 
 @class WeightsVC;
 
-@interface MomentEnvelopeVC : UIViewController {
-    WeightsVC *data;
-}
-
-@property (nonatomic, retain) WeightsVC *data;
-
-@property CGFloat selfHeight;
-
-@property CGFloat selfWidth;
+@interface MomentEnvelopeVC : UIViewController
 
 @end
 
