@@ -14,15 +14,18 @@
 @property NSArray *aircraft;
 @property NSIndexPath *oldIndex;
 @property(retain) NSIndexPath *lastIndexPath;
-@property NSMutableArray *defaultACArray;
+@property NSMutableArray *acArray;
 
 @end
 
 @implementation AircraftMenuTableViewController
 
+@synthesize acList, acArray, acDescription, acID, fuelWeight, fuelGal, fuelMoment, frontSeatWeight, frontSeatMoment, rearSeatWeight, rearSeatMoment, bag1Weight, bag1Moment, bag2Weight, bag2Moment, taxiFuelWeight, taxiFuelMoment, flightFuelWeight, flightFuelMoment;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self getData];
+    NSLog(@"The contents of _acList are: %@", acList);
     
     _aircraft = [[NSArray alloc] initWithObjects:@"N73262 - 1976 C-172 M", @"N6796H - 1975 C-172 M", @"N0376Q - 1972 C-182 P", @"N668DB - 1975 C-210 L", nil];
     
@@ -45,13 +48,14 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSLog(@"_acList count is %d", (int)[_acList count]);
-    return _acList.count;
+    NSLog(@"_acList count is %d", (int)[acList count]);
+    return acList.count;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     //NSLog(@"the selected row is %d", (int)indexPath.row);
     self.lastIndexPath = indexPath;
+    [self setData:indexPath];
     [tableView reloadData];
 }
 
@@ -73,9 +77,8 @@
     {
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
-    NSLog(@"%@", [_acList objectAtIndex:indexPath.row]);
-    cell.textLabel.text = [_acList objectAtIndex:indexPath.row];
-    
+    NSLog(@"%@", [acList objectAtIndex:indexPath.row]);
+    cell.textLabel.text = [[acArray objectAtIndex:indexPath.row] objectForKey:@"acID"];
     
     return cell;
 }
@@ -83,10 +86,45 @@
 - (void) getData {
     
     Singleton *data = [Singleton sharedInput];
+    acDescription = data.acDescription;
+    fuelWeight = data.fuelWeight;
+    fuelMoment = data.fuelMoment;
+    frontSeatWeight = data.frontSeatWeight;
+    frontSeatMoment = data.frontSeatMoment;
+    rearSeatWeight = data.rearSeatWeight;
+    rearSeatMoment = data.rearSeatMoment;
+    bag1Weight = data.bag1Weight;
+    bag1Moment = data.bag1Moment;
+    bag2Weight = data.bag2Weight;
+    bag2Moment = data.bag2Moment;
+    flightFuelWeight = data.flightFuelWeight;
+    flightFuelMoment = data.flightFuelMoment;
+    taxiFuelWeight = data.taxiFuelWeight;
+    taxiFuelMoment = data.taxiFuelMoment;
     
-    data.acList = _acList;
-    
+    acList = data.acList;
+    acArray = [[NSMutableArray alloc] init];
+    NSArray *pathsArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+    NSString *documentDirectoryPath = [pathsArray objectAtIndex:0];
+    NSString *dataPath = [documentDirectoryPath stringByAppendingPathComponent:@"/ACData"];
+    int listCount = (int)[acList count];
+    for ( int i = 0 ; i < listCount ; i++ ) {
+        NSString *filePath = [dataPath stringByAppendingPathComponent:acList[i]];
+        acArray[i] = [NSDictionary dictionaryWithContentsOfFile:filePath];
+    }
 }
+
+- (void) setData:(NSIndexPath *)indexPath {
+    
+    int i = (int)indexPath.row;
+    NSDictionary *selectedAC = acArray[i];
+    acDescription = [selectedAC objectForKey:@"acDescription"];
+    acID = [selectedAC objectForKey:@"acID"];
+    
+    NSLog(@"I'm in setData. The selected acDescription is %@", acDescription);
+}
+
+
 
 /*
 -(NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {

@@ -13,5 +13,15 @@
 @interface AircraftMenuTableViewController : UITableViewController
 
 @property NSArray *acList;
+@property NSString *acDescription, *acID;
+
+@property float fuelGal, fuelWeight, fuelMoment;
+@property float frontSeatWeight, frontSeatMoment;
+@property float rearSeatWeight, rearSeatMoment;
+@property float bag1Weight, bag1Moment;
+@property float bag2Weight, bag2Moment;
+@property float taxiFuelGal, taxiFuelWeight, taxiFuelMoment;
+@property float flightFuelGal, flightFuelWeight, flightFuelMoment;
+@property float totalMoment, totalWeight, totalARM;
 
 @end

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		C507AFC41B1FCE1A00F2086F /* AircraftMenuTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C507AFC31B1FCE1A00F2086F /* AircraftMenuTableViewController.m */; };
 		C507AFC61B2029D700F2086F /* acinfoN668DB.plist in Resources */ = {isa = PBXBuildFile; fileRef = C507AFC51B2029D700F2086F /* acinfoN668DB.plist */; };
+		C530E2D21B43BCC200DDB70B /* acinfoN73262.plist in Resources */ = {isa = PBXBuildFile; fileRef = C530E2D11B43BCC200DDB70B /* acinfoN73262.plist */; };
 		C541DC041B0652B4002D12BB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C541DC031B0652B4002D12BB /* main.m */; };
 		C541DC071B0652B4002D12BB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C541DC061B0652B4002D12BB /* AppDelegate.m */; };
 		C541DC101B0652B4002D12BB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C541DC0E1B0652B4002D12BB /* Main.storyboard */; };
@@ -36,6 +37,7 @@
 		C507AFC21B1FCE1A00F2086F /* AircraftMenuTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AircraftMenuTableViewController.h; sourceTree = "<group>"; };
 		C507AFC31B1FCE1A00F2086F /* AircraftMenuTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AircraftMenuTableViewController.m; sourceTree = "<group>"; };
 		C507AFC51B2029D700F2086F /* acinfoN668DB.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = acinfoN668DB.plist; sourceTree = "<group>"; };
+		C530E2D11B43BCC200DDB70B /* acinfoN73262.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = acinfoN73262.plist; sourceTree = "<group>"; };
 		C541DBFE1B0652B4002D12BB /* WAB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WAB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C541DC021B0652B4002D12BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C541DC031B0652B4002D12BB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				C507AFC51B2029D700F2086F /* acinfoN668DB.plist */,
+				C530E2D11B43BCC200DDB70B /* acinfoN73262.plist */,
 				C541DC021B0652B4002D12BB /* Info.plist */,
 				C541DC031B0652B4002D12BB /* main.m */,
 			);
@@ -230,6 +233,7 @@
 				C507AFC61B2029D700F2086F /* acinfoN668DB.plist in Resources */,
 				C541DC101B0652B4002D12BB /* Main.storyboard in Resources */,
 				C541DC151B0652B4002D12BB /* LaunchScreen.xib in Resources */,
+				C530E2D21B43BCC200DDB70B /* acinfoN73262.plist in Resources */,
 				C541DC121B0652B4002D12BB /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

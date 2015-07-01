@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>fileName</key>
+	<string>acinfoN73262.plist</string>
+	<key>acDescription</key>
+	<string>1976 Cessna 172 M</string>
+	<key>acID</key>
+	<string>N73262</string>
+	<key>maxGross</key>
+	<real>2300</real>
+	<key>eWeight</key>
+	<integer>1564</integer>
+	<key>eMoment</key>
+	<real>62366.72</real>
+	<key>eArm</key>
+	<real>40.9</real>
+	<key>fuelCap</key>
+	<integer>40</integer>
+	<key>fuelArm</key>
+	<integer>46</integer>
+	<key>defaultFuel</key>
+	<integer>40</integer>
+	<key>defaultTaxiFuel</key>
+	<integer>1</integer>
+	<key>defaultFlightFuel</key>
+	<integer>5</integer>
+	<key>station1Arm</key>
+	<real>37</real>
+	<key>station1Default</key>
+	<integer>0</integer>
+	<key>station1Label</key>
+	<string>Front Seats</string>
+	<key>station2Arm</key>
+	<integer>73</integer>
+	<key>station2Default</key>
+	<integer>0</integer>
+	<key>station2Label</key>
+	<string>Rear Seats</string>
+	<key>station3Arm</key>
+	<integer>95</integer>
+	<key>station3Default</key>
+	<integer>15</integer>
+	<key>station3Label</key>
+	<string>Baggage 1</string>
+	<key>station4Arm</key>
+	<integer>123</integer>
+	<key>station4Default</key>
+	<integer>10</integer>
+	<key>station4Label</key>
+	<string>Baggage 2</string>
+	<key>balanceArray</key>
+	<array/>
+	<key>momentArray1</key>
+	<array>
+		<real>52.25</real>
+		<string>1500</string>
+		<string>68</string>
+		<string>1950</string>
+		<string>88.5</string>
+		<string>2300</string>
+		<string>109</string>
+		<string>2300</string>
+		<string>70.5</string>
+		<string>1500</string>
+	</array>
+	<key>momentArray2</key>
+	<array>
+		<string>52.25</string>
+		<string>1500</string>
+		<string>68</string>
+		<string>1950</string>
+		<string>70.92855</string>
+		<string>2000</string>
+		<string>81.1</string>
+		<string>2000</string>
+		<string>60.75</string>
+		<string>1500</string>
+	</array>
+</dict>
+</plist>

@@ -12,11 +12,9 @@
 
 +(id) sharedInput;
 
-//@property (nonatomic, retain) NSString *someProperty;
-
-@property NSDictionary * aircraftInfo;
+@property NSDictionary *aircraftInfo, *acID;
 @property NSArray * acList;
-
+@property NSString * acDescription;
 @property float emptyWeight, emptyMoment;
 @property float fuelGal, fuelWeight, fuelMoment;
 @property float frontSeatWeight, frontSeatMoment;

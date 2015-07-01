@@ -10,16 +10,12 @@
 #import "MomentEnvelopeVC.h"
 
 @interface WeightsVC () {
-    //NSArray *normalEnvelope;
     
 }
 
 @end
 
 @implementation WeightsVC
-
-//float utilityEnvelope[] = {52.25, 1500.0, 68.0, 1950.0, 70.92855, 2000.0, 81.1, 2000.0, 60.75, 1500.0};
-//float normalEnvelope[] = {52.25, 1500.0, 68.0, 1950.0, 88.5, 2300.0, 109.0, 2300.0, 70.5, 1500.0};
 
 - (void) viewDidLoad {
     [self copyData];
