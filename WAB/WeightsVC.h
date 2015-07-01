@@ -84,6 +84,7 @@
 @property float taxiFuelGal, taxiFuelWeight, taxiFuelMoment;
 @property float flightFuelGal, flightFuelWeight, flightFuelMoment;
 @property float totalMoment, totalWeight, totalARM;
+@property NSArray *acList;
 
 @end
 

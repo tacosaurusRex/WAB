@@ -22,6 +22,7 @@
 //float normalEnvelope[] = {52.25, 1500.0, 68.0, 1950.0, 88.5, 2300.0, 109.0, 2300.0, 70.5, 1500.0};
 
 - (void) viewDidLoad {
+    [self copyData];
     _eWeightField.text = [NSString stringWithFormat:@"%.1f", emptyWeight];
     _eWeightArmField.text = [NSString stringWithFormat:@"%.1f", emptyWeightArm];
     _eWeightMomentField.text = [NSString stringWithFormat:@"%.1f", emptyWeightMoment];
@@ -305,6 +306,51 @@
     data.flightFuelMoment = _flightFuelMoment;
     data.totalWeight = _totalWeight;
     data.totalARM = _totalARM;
+    data.acList = _acList;
 }
+
+- (void) copyData
+{
+    NSString *mainBundlePath = [[NSBundle mainBundle] resourcePath];
+    NSArray *mainBundleFileList = [NSArray alloc];
+    NSError *error = nil;
+    mainBundleFileList = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:mainBundlePath error:&error];
+    if(error)
+    {
+        NSLog(@"error getting contents of folder %@ - %@", mainBundlePath, [error localizedDescription]);
+    }
+    NSLog(@"The contents of array allFiles is %@", mainBundleFileList);
+    
+    NSMutableArray *defaultACList = [[NSMutableArray alloc] init];
+    int fileCount = (int)[mainBundleFileList count];
+    for( int i = 0 ; i < fileCount ; i++ ) {
+        NSString *stringFromFileName = mainBundleFileList[i];
+        
+        if ([stringFromFileName containsString:@"acinfo"]) {
+            NSLog(@"aircraft found: %@", stringFromFileName);
+            [defaultACList addObject:stringFromFileName];
+        }
+    }
+    
+    //NSLog(@"the contents of defaultACList is %@", defaultACList);
+    NSFileManager *fileManger = [NSFileManager defaultManager];
+    NSArray *pathsArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+    NSString *documentDirectoryPath = [pathsArray objectAtIndex:0];
+    NSString *dataPath = [documentDirectoryPath stringByAppendingPathComponent:@"/ACData"];
+    
+    int count = (int)[defaultACList count];
+    for ( int i = 0 ; i < count ; i++ )
+    {
+        NSString *destinationPath = [dataPath stringByAppendingPathComponent:defaultACList[i]];
+        //NSLog(@"plist path %@",destinationPath);
+        NSString *sourcePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:defaultACList[i]];
+        [fileManger copyItemAtPath:sourcePath toPath:destinationPath error:&error];
+    }
+    
+    _acList = [[NSArray alloc] init];
+    _acList = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:dataPath error:&error];
+    NSLog(@"The contents of _acList is %@", _acList);
+}
+
 
 @end

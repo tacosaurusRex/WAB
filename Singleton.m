@@ -11,7 +11,6 @@
 @implementation Singleton
 
 @synthesize fuelWeight;
-@synthesize someProperty;
 
 static Singleton *sharedData = nil;
 
@@ -28,10 +27,7 @@ static Singleton *sharedData = nil;
 
 - (id)init {
     
-    //NSLog(@"fuelWeight in SharedData init is %f", fuelWeight);
     if (self = [super init]) {
-        fuelWeight = 0;
-        someProperty = @"Default property value";
     }
     return self;
 }

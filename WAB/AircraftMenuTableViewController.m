@@ -14,6 +14,7 @@
 @property NSArray *aircraft;
 @property NSIndexPath *oldIndex;
 @property(retain) NSIndexPath *lastIndexPath;
+@property NSMutableArray *defaultACArray;
 
 @end
 
@@ -21,7 +22,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self getData];
     
     _aircraft = [[NSArray alloc] initWithObjects:@"N73262 - 1976 C-172 M", @"N6796H - 1975 C-172 M", @"N0376Q - 1972 C-182 P", @"N668DB - 1975 C-210 L", nil];
     
@@ -44,7 +45,8 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return _aircraft.count;
+    NSLog(@"_acList count is %d", (int)[_acList count]);
+    return _acList.count;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -71,11 +73,21 @@
     {
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
+    NSLog(@"%@", [_acList objectAtIndex:indexPath.row]);
+    cell.textLabel.text = [_acList objectAtIndex:indexPath.row];
     
-    cell.textLabel.text = [_aircraft objectAtIndex:indexPath.row];
     
     return cell;
 }
+
+- (void) getData {
+    
+    Singleton *data = [Singleton sharedInput];
+    
+    data.acList = _acList;
+    
+}
+
 /*
 -(NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"oldIndex = %d", (int)_oldIndex);

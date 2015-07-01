@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>fileName</key>
+	<string>acinfoN668DB.plist</string>
 	<key>acType</key>
 	<string>1975 Cessna 210 L</string>
 	<key>acID</key>

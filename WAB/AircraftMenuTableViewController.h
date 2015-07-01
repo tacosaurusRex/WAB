@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WeightsVC.h"
 #import "Singleton.h"
 
 @interface AircraftMenuTableViewController : UITableViewController
+
+@property NSArray *acList;
 
 @end
