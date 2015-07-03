@@ -10,7 +10,7 @@
 
 @implementation MomentEnvelopeView
 
-@synthesize tow, tom, lgw, lwm, zfw, zfm, bew, bem, fuelWeight, fuelGal, fuelMoment, frontSeatWeight, frontSeatMoment, rearSeatWeight, rearSeatMoment, bag1Weight, bag1Moment, bag2Weight, bag2Moment, taxiFuelWeight, taxiFuelMoment, flightFuelWeight, flightFuelMoment;
+@synthesize tow, tom, lgw, lwm, zfw, zfm, bew, bem, fuelWeight, fuelGal, fuelMoment, station1Weight, station1Moment, station2Weight, station2Moment, station3Weight, station3Moment, station4Weight, station4Moment, taxiFuelWeight, taxiFuelMoment, flightFuelWeight, flightFuelMoment, emptyWeight, emptyWeightMoment;
 
 float utilityEnvelope[] = {52.25, 1500.0, 68.0, 1950.0, 70.92855, 2000.0, 81.1, 2000.0, 60.75, 1500.0};
 float normalEnvelope[] = {52.25, 1500.0, 68.0, 1950.0, 88.5, 2300.0, 109.0, 2300.0, 70.5, 1500.0};
@@ -252,14 +252,14 @@ float normalEnvelope[] = {52.25, 1500.0, 68.0, 1950.0, 88.5, 2300.0, 109.0, 2300
     
     fuelWeight = data.fuelWeight;
     fuelMoment = data.fuelMoment;
-    frontSeatWeight = data.frontSeatWeight;
-    frontSeatMoment = data.frontSeatMoment;
-    rearSeatWeight = data.rearSeatWeight;
-    rearSeatMoment = data.rearSeatMoment;
-    bag1Weight = data.bag1Weight;
-    bag1Moment = data.bag1Moment;
-    bag2Weight = data.bag2Weight;
-    bag2Moment = data.bag2Moment;
+    station1Weight = data.station1Weight;
+    station1Moment = data.station1Moment;
+    station2Weight = data.station2Weight;
+    station2Moment = data.station2Moment;
+    station3Weight = data.station3Weight;
+    station3Moment = data.station3Moment;
+    station4Weight = data.station4Weight;
+    station4Moment = data.station4Moment;
     flightFuelWeight = data.flightFuelWeight;
     flightFuelMoment = data.flightFuelMoment;
     taxiFuelWeight = data.taxiFuelWeight;

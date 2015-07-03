@@ -17,20 +17,33 @@
 
 @implementation WeightsVC
 
+@synthesize  acDescription, acID, maxGross, mgva, emptyWeight, emptyWeightArm, emptyWeightMoment, maxFuelGal, defaultFuelGal, defaultTaxiFuelGal, defaultFlightFuelGal, fuelArm, defaultStation1Weight, defaultStation2Weight, defaultStation3Weight, defaultStation4Weight, station1Arm, station2Arm, station3Arm, station4Arm, station1Name, station2Name, station3Name, station4Name, momentArray1, momentArray2, balanceArray, fuelGal, fuelWeight, fuelMoment, fuelGalField, fuelWeightField, fuelMomentField;
+
 - (void) viewDidLoad {
     [self copyData];
+
+    
+
+
+    [super viewDidLoad];
+    [self keypadSetup];
+}
+
+- (void) viewWillAppear:(BOOL)animated {
+
+
+}
+- (void) viewDidAppear:(BOOL)animated {
+    [self getData];
     _eWeightField.text = [NSString stringWithFormat:@"%.1f", emptyWeight];
     _eWeightArmField.text = [NSString stringWithFormat:@"%.1f", emptyWeightArm];
     _eWeightMomentField.text = [NSString stringWithFormat:@"%.1f", emptyWeightMoment];
     _totalMomentLabel.text = [NSString stringWithFormat:@"%.1f", emptyWeightMoment];
     _totalWeightLabel.text = [NSString stringWithFormat:@"%.1f", emptyWeight];
     _totalArmField.text = [NSString stringWithFormat:@"%.1f", emptyWeightArm];
-    //NSArray *normalEnvelope = [[NSArray alloc] initWithObjects:@"52.25", @"1500.00", nil];
     [self defaultWeights];
-    [super viewDidLoad];
-    [self keypadSetup];
+    NSLog(@"The value of defaultFuel is %f", defaultFuelGal);
 }
-
 
 - (void) viewWillDisappear:(BOOL)animated {
     //NSLog(@"I'm in viewWillDisappear");
@@ -38,21 +51,21 @@
 }
 
 - (void) keypadSetup {
-    DoneCancelNumberPadToolbar *fuelToolbar = [[DoneCancelNumberPadToolbar alloc] initWithTextField:_fuelGalField];
+    DoneCancelNumberPadToolbar *fuelToolbar = [[DoneCancelNumberPadToolbar alloc] initWithTextField:fuelGalField];
     fuelToolbar.delegate = self;
-    _fuelGalField.inputAccessoryView = fuelToolbar;
-    DoneCancelNumberPadToolbar *frontSeatToolbar = [[DoneCancelNumberPadToolbar alloc] initWithTextField:_frontSeatsWeightField];
-    frontSeatToolbar.delegate = self;
-    _frontSeatsWeightField.inputAccessoryView = frontSeatToolbar;
-    DoneCancelNumberPadToolbar *rearSeatToolbar = [[DoneCancelNumberPadToolbar alloc] initWithTextField:_rearSeatsWeightField];
-    rearSeatToolbar.delegate = self;
-    _rearSeatsWeightField.inputAccessoryView = rearSeatToolbar;
-    DoneCancelNumberPadToolbar *bag1Toolbar = [[DoneCancelNumberPadToolbar alloc] initWithTextField:_bag1WeightField];
-    bag1Toolbar.delegate = self;
-    _bag1WeightField.inputAccessoryView = bag1Toolbar;
-    DoneCancelNumberPadToolbar *bag2Toolbar = [[DoneCancelNumberPadToolbar alloc] initWithTextField:_bag2WeightField];
-    bag2Toolbar.delegate = self;
-    _bag2WeightField.inputAccessoryView = bag2Toolbar;
+    fuelGalField.inputAccessoryView = fuelToolbar;
+    DoneCancelNumberPadToolbar *station1Toolbar = [[DoneCancelNumberPadToolbar alloc] initWithTextField:_station1WeightField];
+    station1Toolbar.delegate = self;
+    _station1WeightField.inputAccessoryView = station1Toolbar;
+    DoneCancelNumberPadToolbar *station2Toolbar = [[DoneCancelNumberPadToolbar alloc] initWithTextField:_station2WeightField];
+    station2Toolbar.delegate = self;
+    _station2WeightField.inputAccessoryView = station2Toolbar;
+    DoneCancelNumberPadToolbar *station3Toolbar = [[DoneCancelNumberPadToolbar alloc] initWithTextField:_station3WeightField];
+    station3Toolbar.delegate = self;
+    _station3WeightField.inputAccessoryView = station3Toolbar;
+    DoneCancelNumberPadToolbar *station4Toolbar = [[DoneCancelNumberPadToolbar alloc] initWithTextField:_station4WeightField];
+    station4Toolbar.delegate = self;
+    _station4WeightField.inputAccessoryView = station4Toolbar;
     DoneCancelNumberPadToolbar *taxiFuelToolbar = [[DoneCancelNumberPadToolbar alloc] initWithTextField:_taxiFuelGalField];
     taxiFuelToolbar.delegate = self;
     _taxiFuelGalField.inputAccessoryView = taxiFuelToolbar;
@@ -74,21 +87,21 @@
 }
 
 - (IBAction)fuelGalField:(UITextField *)sender {
-    if (!_fuelGal) {
+    if (!fuelGal) {
         if ([sender.text  isEqual: @""] ){
-            _fuelGalField.text = [NSString stringWithFormat:@"0.0"];
+            fuelGalField.text = [NSString stringWithFormat:@"0.0"];
         }
     }
     if ([sender.text  isEqual: @""]) {
-        _fuelGalField.text = [NSString stringWithFormat:@"%.1f", _fuelGal];
+        fuelGalField.text = [NSString stringWithFormat:@"%.1f", fuelGal];
     }
-    _fuelGal = [sender.text floatValue];
+    fuelGal = [sender.text floatValue];
 
-    _fuelWeight = _fuelGal * weightOfFuel;
-    _fuelMoment = _fuelWeight * fuelArm;
-    _fuelGalField.text = [NSString stringWithFormat:@"%.1f", _fuelGal];
-    _fuelWeightField.text = [NSString stringWithFormat:@"%.1f", _fuelWeight];
-    _fuelMomentField.text = [NSString stringWithFormat:@"%.1f", _fuelMoment];
+    fuelWeight = fuelGal * weightOfAvGas;
+    fuelMoment = fuelWeight * fuelArm;
+    fuelGalField.text = [NSString stringWithFormat:@"%.1f", fuelGal];
+    fuelWeightField.text = [NSString stringWithFormat:@"%.1f", fuelWeight];
+    fuelMomentField.text = [NSString stringWithFormat:@"%.1f", fuelMoment];
     [self summation];
 }
 
@@ -102,7 +115,7 @@
         _taxiFuelGalField.text = [NSString stringWithFormat:@"%.1f", _taxiFuelGal];
     }
     _taxiFuelGal = [sender.text floatValue];
-    _taxiFuelWeight = _taxiFuelGal * weightOfFuel;
+    _taxiFuelWeight = _taxiFuelGal * weightOfAvGas;
     _taxiFuelMoment = _taxiFuelWeight * fuelArm;
     _taxiFuelGalField.text = [NSString stringWithFormat:@"%.1f", _taxiFuelGal];
     _taxiFuelWeightField.text = [NSString stringWithFormat:@"%.1f", _taxiFuelWeight];
@@ -120,7 +133,7 @@
         _flightFuelGalField.text = [NSString stringWithFormat:@"%.1f", _flightFuelGal];
     }
     _flightFuelGal = [sender.text floatValue];
-    _flightFuelWeight = _flightFuelGal * weightOfFuel;
+    _flightFuelWeight = _flightFuelGal * weightOfAvGas;
     _flightFuelMoment = _flightFuelWeight * fuelArm;
     _flightFuelGalField.text = [NSString stringWithFormat:@"%.1f", _flightFuelGal];
     _flightFuelWeightField.text = [NSString stringWithFormat:@"%.1f", _flightFuelWeight];
@@ -128,74 +141,74 @@
     [self summation];
 }
 
-- (IBAction)frontSeatsWeightField:(UITextField *)sender {
-    if (!_frontSeatWeight) {
+- (IBAction)station1WeightField:(UITextField *)sender {
+    if (!_station1Weight) {
         if ([sender.text  isEqual: @""] ){
-            _frontSeatsWeightField.text = [NSString stringWithFormat:@"0.0"];
+            _station1WeightField.text = [NSString stringWithFormat:@"0.0"];
         }
     }
     if ([sender.text  isEqual: @""]) {
-        _frontSeatsWeightField.text = [NSString stringWithFormat:@"%.1f", _frontSeatWeight];
+        _station1WeightField.text = [NSString stringWithFormat:@"%.1f", _station1Weight];
     }
-    _frontSeatWeight = [sender.text floatValue];
-    _frontSeatMoment = _frontSeatWeight * frontSeatArm;
-    _frontSeatsWeightField.text = [NSString stringWithFormat:@"%.1f", _frontSeatWeight];
-    _frontSeatMomentField.text = [NSString stringWithFormat:@"%.1f", _frontSeatMoment];
+    _station1Weight = [sender.text floatValue];
+    _station1Moment = _station1Weight * station1Arm;
+    _station1WeightField.text = [NSString stringWithFormat:@"%.1f", _station1Weight];
+    _station1MomentField.text = [NSString stringWithFormat:@"%.1f", _station1Moment];
     [self summation];
 }
 
-- (IBAction)rearSeatsWeightField:(UITextField *)sender {
-    if (!_rearSeatWeight) {
+- (IBAction)station2WeightField:(UITextField *)sender {
+    if (!_station2Weight) {
         if ([sender.text  isEqual: @""] ){
-            _rearSeatsWeightField.text = [NSString stringWithFormat:@"0.0"];
+            _station2WeightField.text = [NSString stringWithFormat:@"0.0"];
         }
     }
     if ([sender.text  isEqual: @""]) {
-        _rearSeatsWeightField.text = [NSString stringWithFormat:@"%.1f", _rearSeatWeight];
+        _station2WeightField.text = [NSString stringWithFormat:@"%.1f", _station2Weight];
     }
-    _rearSeatWeight = [sender.text floatValue];
-    _rearSeatMoment = _rearSeatWeight * rearSeatArm;
-    _rearSeatsWeightField.text = [NSString stringWithFormat:@"%.1f", _rearSeatWeight];
-    _rearSeatMomentField.text = [NSString stringWithFormat:@"%.1f", _rearSeatMoment];
+    _station2Weight = [sender.text floatValue];
+    _station2Moment = _station2Weight * station2Arm;
+    _station2WeightField.text = [NSString stringWithFormat:@"%.1f", _station2Weight];
+    _station2MomentField.text = [NSString stringWithFormat:@"%.1f", _station2Moment];
     [self summation];
 }
 
-- (IBAction)bag1WeightField:(UITextField *)sender {
-    if (!_bag1Weight) {
+- (IBAction)station3WeightField:(UITextField *)sender {
+    if (!_station3Weight) {
         if ([sender.text  isEqual: @""] ){
-            _bag1WeightField.text = [NSString stringWithFormat:@"0.0"];
+            _station3WeightField.text = [NSString stringWithFormat:@"0.0"];
         }
     }
     if ([sender.text  isEqual: @""]) {
-        _bag1WeightField.text = [NSString stringWithFormat:@"%.1f", _bag1Weight];
+        _station3WeightField.text = [NSString stringWithFormat:@"%.1f", _station3Weight];
     }
-    _bag1Weight = [sender.text floatValue];
-    _bag1Moment = _bag1Weight * bag1Arm;
-    _bag1WeightField.text = [NSString stringWithFormat:@"%.1f", _bag1Weight];
-    _bag1MomentField.text = [NSString stringWithFormat:@"%.1f", _bag1Moment];
+    _station3Weight = [sender.text floatValue];
+    _station3Moment = _station3Weight * station3Arm;
+    _station3WeightField.text = [NSString stringWithFormat:@"%.1f", _station3Weight];
+    _station3MomentField.text = [NSString stringWithFormat:@"%.1f", _station3Moment];
     [self summation];
 }
 
-- (IBAction)bag2WeightField:(UITextField *)sender {
-    if (!_bag2Weight) {
+- (IBAction)station4WeightField:(UITextField *)sender {
+    if (!_station4Weight) {
         if ([sender.text  isEqual: @""] ){
-            _bag2WeightField.text = [NSString stringWithFormat:@"0.0"];
+            _station4WeightField.text = [NSString stringWithFormat:@"0.0"];
         }
     }
     if ([sender.text  isEqual: @""]) {
-        _bag2WeightField.text = [NSString stringWithFormat:@"%.1f", _bag2Weight];
+        _station4WeightField.text = [NSString stringWithFormat:@"%.1f", _station4Weight];
     }
-    _bag2Weight = [sender.text floatValue];
-    _bag2Moment = _bag2Weight * bag2Arm;
-    _bag2WeightField.text = [NSString stringWithFormat:@"%.1f", _bag2Weight];
-    _bag2MomentField.text = [NSString stringWithFormat:@"%.1f", _bag2Moment];
+    _station4Weight = [sender.text floatValue];
+    _station4Moment = _station4Weight * station4Arm;
+    _station4WeightField.text = [NSString stringWithFormat:@"%.1f", _station4Weight];
+    _station4MomentField.text = [NSString stringWithFormat:@"%.1f", _station4Moment];
     [self summation];
 }
 
 - (void) summation
 {
-    _totalMoment = emptyWeightMoment + _fuelMoment + _frontSeatMoment + _rearSeatMoment + _bag1Moment + _bag2Moment - _taxiFuelMoment;
-    _totalWeight = emptyWeight + _fuelWeight + _frontSeatWeight + _rearSeatWeight + _bag1Weight + _bag2Weight - _taxiFuelWeight;
+    _totalMoment = emptyWeightMoment + fuelMoment + _station1Moment + _station2Moment + _station3Moment + _station4Moment - _taxiFuelMoment;
+    _totalWeight = emptyWeight + fuelWeight + _station1Weight + _station2Weight + _station3Weight + _station4Weight - _taxiFuelWeight;
     _totalARM = _totalMoment/_totalWeight;
     _totalMomentLabel.text = [NSString stringWithFormat:@"%.1f", _totalMoment];
     _totalWeightLabel.text = [NSString stringWithFormat:@"%.1f", _totalWeight];
@@ -207,42 +220,43 @@
 
 - (void) defaultWeights
 {
-    if (!_taxiFuelGal) {
-        _fuelGal = defaultFuelGallons;
-        _fuelGalField.text = [NSString stringWithFormat:@"%.1f", _fuelGal];
-        _fuelWeight = _fuelGal * weightOfFuel;
-        _fuelWeightField.text = [NSString stringWithFormat:@"%.1f", _fuelWeight];
-        _fuelMoment = _fuelWeight * fuelArm;
-        _fuelMomentField.text = [NSString stringWithFormat:@"%.1f", _fuelMoment];
+    if (!fuelGal) {
+        fuelGal = defaultFuelGal;
+        fuelGalField.text = [NSString stringWithFormat:@"%.1f", fuelGal];
+        fuelWeight = fuelGal * weightOfAvGas;
+        fuelWeightField.text = [NSString stringWithFormat:@"%.1f", fuelWeight];
+        fuelMoment = fuelWeight * fuelArm;
+        fuelMomentField.text = [NSString stringWithFormat:@"%.1f", fuelMoment];
+        NSLog(@"I'm in defaultWeights. FuelGal = %f, fuelWeight = %f, fuelArm = %f, fuelMoment = %f", fuelGal, fuelWeight, fuelArm, fuelMoment);
         
     }
     if (!_taxiFuelGal) {
-        _taxiFuelGal = defaultTaxiFuelGallons;
+        _taxiFuelGal = defaultTaxiFuelGal;
         _taxiFuelGalField.text = [NSString stringWithFormat:@"%.1f", _taxiFuelGal];
-        _taxiFuelWeight = _taxiFuelGal * weightOfFuel;
+        _taxiFuelWeight = _taxiFuelGal * weightOfAvGas;
         _taxiFuelWeightField.text = [NSString stringWithFormat:@"%.1f", _taxiFuelWeight];
         _taxiFuelMoment = _taxiFuelWeight * fuelArm;
         _taxiFuelMomentField.text = [NSString stringWithFormat:@"%.1f", _taxiFuelMoment];
     }
     if (!_flightFuelGal) {
-        _flightFuelGal = defaultFlightFuelGallons;
+        _flightFuelGal = defaultFlightFuelGal;
         _flightFuelGalField.text = [NSString stringWithFormat:@"%.1f", _flightFuelGal];
-        _flightFuelWeight = _flightFuelGal * weightOfFuel;
+        _flightFuelWeight = _flightFuelGal * weightOfAvGas;
         _flightFuelWeightField.text = [NSString stringWithFormat:@"%.1f", _flightFuelWeight];
         _flightFuelMoment = _flightFuelWeight * fuelArm;
         _flightFuelMomentField.text = [NSString stringWithFormat:@"%.1f", _flightFuelMoment];
     }
-    if (!_bag1Weight) {
-        _bag1Weight = defaultbag1Weight;
-        _bag1WeightField.text = [NSString stringWithFormat:@"%.1f", _bag1Weight];
-        _bag1Moment = _bag1Weight * bag1Arm;
-        _bag1MomentField.text = [NSString stringWithFormat:@"%.1f", _bag1Moment];
+    if (!_station3Weight) {
+        _station3Weight = defaultStation3Weight;
+        _station3WeightField.text = [NSString stringWithFormat:@"%.1f", _station3Weight];
+        _station3Moment = _station3Weight * station3Arm;
+        _station3MomentField.text = [NSString stringWithFormat:@"%.1f", _station3Moment];
     }
-    if (!_bag2Weight) {
-        _bag2Weight = defaultbag2Weight;
-        _bag2WeightField.text = [NSString stringWithFormat:@"%.1f", _bag2Weight];
-        _bag2Moment = _bag2Weight * bag2Arm;
-        _bag2MomentField.text = [NSString stringWithFormat:@"%.1f", _bag2Moment];
+    if (!_station4Weight) {
+        _station4Weight = defaultStation4Weight;
+        _station4WeightField.text = [NSString stringWithFormat:@"%.1f", _station4Weight];
+        _station4Moment = _station4Weight * station4Arm;
+        _station4MomentField.text = [NSString stringWithFormat:@"%.1f", _station4Moment];
     }
 
     [self summation];
@@ -281,20 +295,56 @@
     }
 }
 
+
+- (void)getData {
+    
+    Singleton *data = [Singleton sharedInput];
+    
+    acDescription = data.acDescription;
+    acID = data.acID;
+    maxGross = data.maxGross;
+    mgva = data.mgva;
+    emptyWeight = data.emptyWeight;
+    emptyWeightArm = data.emptyWeightArm;
+    maxFuelGal = data.maxFuelGal;
+    defaultFuelGal = data.defaultFuelGal;
+    defaultTaxiFuelGal = data.defaultTaxiFuelGal;
+    defaultFlightFuelGal = data.defaultFlightFuelGal;
+    fuelArm = data.fuelArm;
+    defaultStation1Weight = data.defaultStation1Weight;
+    defaultStation2Weight = data.defaultStation2Weight;
+    defaultStation3Weight = data.defaultStation3Weight;
+    defaultStation4Weight = data.defaultStation4Weight;
+    station1Arm = data.station1Arm;
+    station2Arm = data.station2Arm;
+    station3Arm = data.station3Arm;
+    station4Arm = data.station4arm;
+    station1Name = data.station1Name;
+    station2Name = data.station2Name;
+    station3Name = data.station3Name;
+    station4Name = data.station4Name;
+    momentArray1 = data.momentArray1;
+    momentArray2 = data.momentArray2;
+    balanceArray = data.balanceArray;
+}
+
+
+
+
 - (void)shareData {
     
     Singleton *data = [Singleton sharedInput];
     
-    data.fuelWeight = _fuelWeight;
-    data.fuelMoment = _fuelMoment;
-    data.frontSeatWeight = _frontSeatWeight;
-    data.frontSeatMoment = _frontSeatMoment;
-    data.rearSeatWeight = _rearSeatWeight;
-    data.rearSeatMoment = _rearSeatMoment;
-    data.bag1Weight = _bag1Weight;
-    data.bag1Moment = _bag1Moment;
-    data.bag2Weight = _bag2Weight;
-    data.bag2Moment = _bag2Moment;
+    data.fuelWeight = fuelWeight;
+    data.fuelMoment = fuelMoment;
+    data.station1Weight = _station1Weight;
+    data.station1Moment = _station1Moment;
+    data.station2Weight = _station2Weight;
+    data.station2Moment = _station2Moment;
+    data.station3Weight = _station3Weight;
+    data.station3Moment = _station3Moment;
+    data.station4Weight = _station4Weight;
+    data.station4Moment = _station4Moment;
     data.taxiFuelWeight = _taxiFuelWeight;
     data.taxiFuelMoment = _taxiFuelMoment;
     data.totalMoment = _totalMoment;

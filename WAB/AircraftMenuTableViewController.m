@@ -20,7 +20,16 @@
 
 @implementation AircraftMenuTableViewController
 
-@synthesize acList, acArray, acDescription, acID, fuelWeight, fuelGal, fuelMoment, frontSeatWeight, frontSeatMoment, rearSeatWeight, rearSeatMoment, bag1Weight, bag1Moment, bag2Weight, bag2Moment, taxiFuelWeight, taxiFuelMoment, flightFuelWeight, flightFuelMoment;
+@synthesize acList, acArray,
+acDescription, acID,
+maxGross, mgva,
+emptyWeight, emptyWeightArm, emptyWeightMoment,
+maxFuelGal, defaultFuelGal, defaultTaxiFuelGal, defaultFlightFuelGal, fuelArm,
+defaultStation1Weight, defaultStation2Weight,defaultStation3Weight, defaultStation4Weight,
+station1Arm, station2Arm, station3Arm, station4Arm,
+station1Name, station2Name, station3Name, station4Name,
+momentArray1, momentArray2, balanceArray;
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -41,6 +50,12 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void) viewWillDisappear:(BOOL)animated {
+    
+    NSLog(@"I'm in Aircraft Menu. The value of defaultFuel is %f", defaultFuelGal);
+    
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -56,6 +71,7 @@
     //NSLog(@"the selected row is %d", (int)indexPath.row);
     self.lastIndexPath = indexPath;
     [self setData:indexPath];
+    [self shareData];
     [tableView reloadData];
 }
 
@@ -86,24 +102,36 @@
 - (void) getData {
     
     Singleton *data = [Singleton sharedInput];
-    acDescription = data.acDescription;
-    fuelWeight = data.fuelWeight;
-    fuelMoment = data.fuelMoment;
-    frontSeatWeight = data.frontSeatWeight;
-    frontSeatMoment = data.frontSeatMoment;
-    rearSeatWeight = data.rearSeatWeight;
-    rearSeatMoment = data.rearSeatMoment;
-    bag1Weight = data.bag1Weight;
-    bag1Moment = data.bag1Moment;
-    bag2Weight = data.bag2Weight;
-    bag2Moment = data.bag2Moment;
-    flightFuelWeight = data.flightFuelWeight;
-    flightFuelMoment = data.flightFuelMoment;
-    taxiFuelWeight = data.taxiFuelWeight;
-    taxiFuelMoment = data.taxiFuelMoment;
-    
     acList = data.acList;
     acArray = [[NSMutableArray alloc] init];
+
+    acDescription = data.acDescription;
+    acID = data.acID;
+    maxGross = data.maxGross;
+    mgva = data.mgva;
+    emptyWeight = data.emptyWeight;
+    emptyWeightArm = data.emptyWeightArm;
+    maxFuelGal = data.maxFuelGal;
+    defaultFuelGal = data.emptyWeightArm;
+    defaultTaxiFuelGal = data.defaultTaxiFuelGal;
+    defaultFlightFuelGal = data.defaultFlightFuelGal;
+    fuelArm = data.fuelArm;
+    defaultStation1Weight = data.defaultStation1Weight;
+    defaultStation2Weight = data.defaultStation2Weight;
+    defaultStation3Weight = data.defaultStation3Weight;
+    defaultStation4Weight = data.defaultStation4Weight;
+    station1Arm = data.station1Arm;
+    station2Arm = data.station2Arm;
+    station3Arm = data.station3Arm;
+    station4Arm = data.station4arm;
+    station1Name = data.station1Name;
+    station2Name = data.station2Name;
+    station3Name = data.station3Name;
+    station4Name = data.station4Name;
+    momentArray1 = data.momentArray1;
+    momentArray2 = data.momentArray2;
+    balanceArray = data.balanceArray;
+    
     NSArray *pathsArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
     NSString *documentDirectoryPath = [pathsArray objectAtIndex:0];
     NSString *dataPath = [documentDirectoryPath stringByAppendingPathComponent:@"/ACData"];
@@ -115,16 +143,56 @@
 }
 
 - (void) setData:(NSIndexPath *)indexPath {
-    
     int i = (int)indexPath.row;
     NSDictionary *selectedAC = acArray[i];
-    acDescription = [selectedAC objectForKey:@"acDescription"];
-    acID = [selectedAC objectForKey:@"acID"];
+    acDescription =         [selectedAC objectForKey:@"acDescription"];
+    acID =                  [selectedAC objectForKey:@"acID"];
+    maxGross =              [[selectedAC objectForKey:@"maxGross"] floatValue];
+    mgva =                  [[selectedAC objectForKey:@"mgva"] floatValue];
+    emptyWeight =           [[selectedAC objectForKey:@"emptyWeight"] floatValue];
+    emptyWeightArm =        [[selectedAC objectForKey:@"emptyWeightArm"] floatValue];
+    maxFuelGal =            [[selectedAC objectForKey:@"maxFuel"] floatValue];
+    defaultFuelGal =        [[selectedAC objectForKey:@"defaultFuel"] floatValue];
+    defaultTaxiFuelGal =    [[selectedAC objectForKey:@"defaultTaxiFuel"] floatValue];
+    defaultFlightFuelGal =  [[selectedAC objectForKey:@"defaultFlightFuel"] floatValue];
+    fuelArm =               [[selectedAC objectForKey:@"fuelArm"] floatValue];
+    defaultStation1Weight = [[selectedAC objectForKey:@"defaultStation1Weight"] floatValue];
+    defaultStation2Weight = [[selectedAC objectForKey:@"defaultStation2Weight"] floatValue];
+    defaultStation3Weight = [[selectedAC objectForKey:@"defaultStation3Weight"] floatValue];
+    defaultStation4Weight = [[selectedAC objectForKey:@"defaultStation4Weight"] floatValue];
+    station1Arm =           [[selectedAC objectForKey:@"station1Arm"] floatValue];
+    station2Arm =           [[selectedAC objectForKey:@"station2Arm"] floatValue];
+    station3Arm =           [[selectedAC objectForKey:@"station3Arm"] floatValue];
+    station4Arm =           [[selectedAC objectForKey:@"station4Arm"] floatValue];
+    station1Name =          [selectedAC objectForKey:@"station1Name"];
+    station2Name =          [selectedAC objectForKey:@"station2Name"];
+    station3Name =          [selectedAC objectForKey:@"station3Name"];
+    station4Name =          [selectedAC objectForKey:@"station4Name"];
+    momentArray1 =          [selectedAC objectForKey:@"momentArray1"];
+    momentArray2 =          [selectedAC objectForKey:@"momentArray2"];
+    balanceArray =          [selectedAC objectForKey:@"balanceArray"];
     
-    NSLog(@"I'm in setData. The selected acDescription is %@", acDescription);
+    
+    NSLog(@"I'm in setData. The selected aircraft is %@", acID);
+    NSLog(@"The default fuel value is %f", defaultFuelGal);
 }
 
-
+- (void)shareData {
+    
+    Singleton *data = [Singleton sharedInput];
+    
+    data.defaultFuelGal = defaultFuelGal;
+    data.fuelArm = fuelArm;
+    data.defaultStation1Weight = defaultStation1Weight;
+    data.defaultStation2Weight = defaultStation1Weight;
+    data.defaultStation3Weight = defaultStation1Weight;
+    data.defaultStation4Weight = defaultStation1Weight;
+    data.station1Arm = station1Arm;
+    data.station1Arm = station1Arm;
+    data.station1Arm = station1Arm;
+    data.station1Arm = station1Arm;
+    data.station1Arm = station1Arm;
+}
 
 /*
 -(NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {

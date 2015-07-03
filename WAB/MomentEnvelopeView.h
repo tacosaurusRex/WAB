@@ -15,13 +15,14 @@
 @interface MomentEnvelopeView : UIView
 
 @property float fuelGal, fuelWeight, fuelMoment;
-@property float frontSeatWeight, frontSeatMoment;
-@property float rearSeatWeight, rearSeatMoment;
-@property float bag1Weight, bag1Moment;
-@property float bag2Weight, bag2Moment;
+@property float station1Weight, station1Moment;
+@property float station2Weight, station2Moment;
+@property float station3Weight, station3Moment;
+@property float station4Weight, station4Moment;
 @property float taxiFuelGal, taxiFuelWeight, taxiFuelMoment;
 @property float flightFuelGal, flightFuelWeight, flightFuelMoment;
 @property float totalMoment, totalWeight, totalARM;
+@property float emptyWeight, emptyWeightMoment;
 
 @property float tow; //Take-off Weight
 @property float tom; //Take-off Moment

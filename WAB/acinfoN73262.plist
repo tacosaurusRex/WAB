@@ -10,6 +10,8 @@
 	<string>N73262</string>
 	<key>maxGross</key>
 	<real>2300</real>
+	<key>mgva</key>
+	<integer>97</integer>
 	<key>eWeight</key>
 	<integer>1564</integer>
 	<key>eMoment</key>

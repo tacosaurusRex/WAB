@@ -257,19 +257,20 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="0.0" borderStyle="roundedRect" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5Kd-0i-lGo" userLabel="frontSeatWeight">
+                            <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="0.0" borderStyle="roundedRect" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5Kd-0i-lGo" userLabel="station1Weight">
                                 <rect key="frame" x="120" y="190" width="334" height="30"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" constant="334" id="2B0-kU-mjf"/>
                                     <constraint firstAttribute="height" constant="30" id="Drr-pg-muP"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="42" id="rZS-03-1Rr"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
-                                    <action selector="frontSeatsWeightField:" destination="9pv-A4-QxB" eventType="editingDidEnd" id="3sj-zA-g9m"/>
+                                    <action selector="station1WeightField:" destination="9pv-A4-QxB" eventType="editingDidEnd" id="A15-Ku-5sC"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="37.0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Oin-Wu-2Xr" userLabel="frontSeatArm">
+                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="37.0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Oin-Wu-2Xr" userLabel="station1Arm">
                                 <rect key="frame" x="475" y="190" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="LcS-Za-rJ6"/>
@@ -278,7 +279,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="22" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="0.0" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZLf-9x-P6t" userLabel="frontSeatMoment">
+                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="22" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="0.0" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZLf-9x-P6t" userLabel="station1Moment">
                                 <rect key="frame" x="524" y="190" width="66" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="IYA-Ab-AXP"/>
@@ -307,7 +308,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="0.0" borderStyle="roundedRect" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kvB-Xu-AwL" userLabel="rearSeatWeight">
+                            <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="0.0" borderStyle="roundedRect" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kvB-Xu-AwL" userLabel="station2Weight">
                                 <rect key="frame" x="120" y="228" width="334" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="ERF-SI-oFg"/>
@@ -316,10 +317,10 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
-                                    <action selector="rearSeatsWeightField:" destination="9pv-A4-QxB" eventType="editingDidEnd" id="vlT-ms-QPd"/>
+                                    <action selector="station2WeightField:" destination="9pv-A4-QxB" eventType="editingDidEnd" id="ePR-8H-2xN"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="13" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="73.0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XqR-gU-YrM" userLabel="rearSeatArm">
+                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="13" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="73.0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XqR-gU-YrM" userLabel="station2Arm">
                                 <rect key="frame" x="475" y="228" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="Osg-zA-odY"/>
@@ -328,7 +329,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="23" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="0.0" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sAm-Iz-YDs" userLabel="rearSeatMoment">
+                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="23" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="0.0" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sAm-Iz-YDs" userLabel="station2Moment">
                                 <rect key="frame" x="524" y="228" width="66" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="fTT-1Y-42B"/>
@@ -367,7 +368,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="14" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="95.0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="H3Z-M9-3uI" userLabel="bag1Arm">
+                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="14" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="95.0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="H3Z-M9-3uI" userLabel="station3Arm">
                                 <rect key="frame" x="475" y="266" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="Gej-28-guX"/>
@@ -376,7 +377,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="24" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="0.0" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PZV-W2-eiD" userLabel="bag1Moment">
+                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="24" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="0.0" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PZV-W2-eiD" userLabel="station3Moment">
                                 <rect key="frame" x="524" y="266" width="66" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="5hg-Ni-E9W"/>
@@ -405,7 +406,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="0.0" borderStyle="roundedRect" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VfA-ft-62E" userLabel="bag2Weight">
+                            <textField opaque="NO" clipsSubviews="YES" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="0.0" borderStyle="roundedRect" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VfA-ft-62E" userLabel="station4Weight">
                                 <rect key="frame" x="120" y="304" width="334" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="42" id="N9k-l1-SYD"/>
@@ -414,10 +415,10 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
-                                    <action selector="bag2WeightField:" destination="9pv-A4-QxB" eventType="editingDidEnd" id="VW4-df-tix"/>
+                                    <action selector="station4WeightField:" destination="9pv-A4-QxB" eventType="editingDidEnd" id="pzU-jX-IMq"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="15" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="123.0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VjG-y1-cId" userLabel="bag2Arm">
+                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="15" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="123.0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VjG-y1-cId" userLabel="station4Arm">
                                 <rect key="frame" x="475" y="304" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="rSU-h1-SiN"/>
@@ -426,7 +427,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="25" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="0.0" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3pG-o0-Hpa" userLabel="bag2Moment">
+                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="25" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="0.0" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3pG-o0-Hpa" userLabel="station4Moment">
                                 <rect key="frame" x="524" y="304" width="66" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="66" id="Ibr-lY-YUX"/>
@@ -676,7 +677,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="0.0" borderStyle="roundedRect" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WwX-3n-yyp" userLabel="bag1Weight">
+                            <textField opaque="NO" clipsSubviews="YES" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="0.0" borderStyle="roundedRect" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WwX-3n-yyp" userLabel="station3Weight">
                                 <rect key="frame" x="120" y="266" width="334" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="42" id="0Vn-Mk-z4U"/>
@@ -685,7 +686,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
-                                    <action selector="bag1WeightField:" destination="9pv-A4-QxB" eventType="editingDidEnd" id="5g4-cJ-P2N"/>
+                                    <action selector="station3WeightField:" destination="9pv-A4-QxB" eventType="editingDidEnd" id="39y-ci-XAN"/>
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Takeoff:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G8a-Wd-f6L">
@@ -853,28 +854,28 @@
                     </view>
                     <navigationItem key="navigationItem" title="Load Worksheet" id="53o-PR-Khd" userLabel="MainLabel"/>
                     <connections>
-                        <outlet property="bag1ArmField" destination="H3Z-M9-3uI" id="I1M-fG-KXN"/>
-                        <outlet property="bag1MomentField" destination="PZV-W2-eiD" id="aHF-eO-vh7"/>
-                        <outlet property="bag1WeightField" destination="WwX-3n-yyp" id="BXM-Za-L7x"/>
-                        <outlet property="bag2ArmField" destination="VjG-y1-cId" id="poT-no-OYp"/>
-                        <outlet property="bag2MomentField" destination="3pG-o0-Hpa" id="oAt-5h-vRc"/>
-                        <outlet property="bag2WeightField" destination="VfA-ft-62E" id="oXk-Lr-RaR"/>
                         <outlet property="eWeightArmField" destination="jG6-6r-Sfy" id="NSV-Sj-iS8"/>
                         <outlet property="eWeightField" destination="T95-Fs-zdI" id="iHZ-fd-zfI"/>
                         <outlet property="eWeightMomentField" destination="148-QZ-QHe" id="qSt-yU-1km"/>
                         <outlet property="flightFuelGalField" destination="uCY-wc-mGt" id="c9Q-B9-pFY"/>
                         <outlet property="flightFuelMomentField" destination="gi5-FV-Tso" id="V5H-be-TTt"/>
                         <outlet property="flightFuelWeightField" destination="1oe-mP-OdO" id="sV1-kv-ZlO"/>
-                        <outlet property="frontSeatArmField" destination="Oin-Wu-2Xr" id="kGd-Ep-jq6"/>
-                        <outlet property="frontSeatMomentField" destination="ZLf-9x-P6t" id="UyJ-iK-c2h"/>
-                        <outlet property="frontSeatsWeightField" destination="5Kd-0i-lGo" id="rf8-HK-8ap"/>
                         <outlet property="fuelArmField" destination="beL-mu-Y6y" id="24a-yG-sHk"/>
                         <outlet property="fuelGalField" destination="aho-uj-zH3" id="BGm-xh-mOX"/>
                         <outlet property="fuelMomentField" destination="Zc3-ip-0Ox" id="kQX-Sq-eIM"/>
                         <outlet property="fuelWeightField" destination="Zqt-ar-zOa" id="mcj-Tt-xNm"/>
-                        <outlet property="rearSeatArmField" destination="XqR-gU-YrM" id="RP1-Am-KZC"/>
-                        <outlet property="rearSeatMomentField" destination="sAm-Iz-YDs" id="7XQ-1d-bIR"/>
-                        <outlet property="rearSeatsWeightField" destination="kvB-Xu-AwL" id="bdg-jX-0ir"/>
+                        <outlet property="station1ArmField" destination="Oin-Wu-2Xr" id="FT5-0j-mUV"/>
+                        <outlet property="station1MomentField" destination="ZLf-9x-P6t" id="y21-va-BnM"/>
+                        <outlet property="station1WeightField" destination="5Kd-0i-lGo" id="meQ-Yu-PTF"/>
+                        <outlet property="station2ArmField" destination="XqR-gU-YrM" id="AhY-am-BuF"/>
+                        <outlet property="station2MomentField" destination="sAm-Iz-YDs" id="1dH-5M-waf"/>
+                        <outlet property="station2WeightField" destination="kvB-Xu-AwL" id="RK4-Xp-Us5"/>
+                        <outlet property="station3ArmField" destination="H3Z-M9-3uI" id="EuC-MU-TJc"/>
+                        <outlet property="station3MomentField" destination="PZV-W2-eiD" id="lFg-hC-Daf"/>
+                        <outlet property="station3WeightField" destination="WwX-3n-yyp" id="bxc-vw-QWw"/>
+                        <outlet property="station4ArmField" destination="VjG-y1-cId" id="Nx2-qk-frP"/>
+                        <outlet property="station4MomentField" destination="3pG-o0-Hpa" id="hPn-H7-gRX"/>
+                        <outlet property="station4WeightField" destination="VfA-ft-62E" id="JHg-hT-CPL"/>
                         <outlet property="taxiFuelArmField" destination="gEJ-9E-NNU" id="DY0-04-q4C"/>
                         <outlet property="taxiFuelGalField" destination="Vb2-XF-8SR" id="Kp4-eT-qfO"/>
                         <outlet property="taxiFuelMomentField" destination="3cZ-IK-Ssa" id="z4k-8a-hYq"/>
